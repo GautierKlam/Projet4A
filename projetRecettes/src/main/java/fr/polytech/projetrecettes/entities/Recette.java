@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 public class Recette {
     @Id
-    private int identifiant;
+    private int id_recette;
     private String nom;
     private int nb_personnes;
     private String introduction;
