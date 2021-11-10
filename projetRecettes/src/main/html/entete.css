@@ -10,14 +10,12 @@ header{
 
 
 }
-a:link{
+#connexion, #accueil{
     text-decoration:none;
     color : yellow;
     padding-right : 20px;
 }
-#accueil{
-    color:yellow;
-}
+
 .entete{
     float:right;
 

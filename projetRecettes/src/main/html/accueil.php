@@ -20,10 +20,11 @@
 
       while($row = $sth->fetch()) {
           echo "<tr>";
+          $id=$row['identifiant'];
         $intr= utf8_encode($row['introduction']);
         $nom=utf8_encode($row['nom']);
         $typerecette=utf8_encode($row['recette_type']);
-        echo"<td>".$nom."</td><td>".$intr."</td><td>".$typerecette."</td></tr>";
+        echo"<td><a href='voirrecette.php?id=$id'>".$nom."</a></td><td>".$intr."</td><td>".$typerecette."</td></tr>";
       }
         echo "</table>"
     ?>
