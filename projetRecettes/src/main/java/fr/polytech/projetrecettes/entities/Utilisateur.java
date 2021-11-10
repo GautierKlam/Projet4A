@@ -13,6 +13,7 @@ public class Utilisateur {
     private String nom;
     private String prenom;
     private String pseudo;
+    private String mdp;
     private String mail;
     private boolean admin;
 }
