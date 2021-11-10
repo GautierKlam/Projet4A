@@ -1,12 +1,14 @@
 package fr.polytech.projetrecettes.web;
 
 import fr.polytech.projetrecettes.dao.RecetteInterface;
+import fr.polytech.projetrecettes.entities.Avis;
 import fr.polytech.projetrecettes.entities.Recette;
 import fr.polytech.projetrecettes.entities.RecetteType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class RecetteControlleur {
@@ -21,14 +23,20 @@ public class RecetteControlleur {
 
     //renvoie le nombre de recettes
     private int taille() {
-        int taille = 0;
-        for(Recette recette : recetteList())taille++;
-        return taille;
+        return recetteList().size();
     }
 
     //ajouter une recette
     @PostMapping(path = "/recettes")
     public Recette save(Recette recette){
+        return recetteInterface.save(recette);
+    }
+
+    //ajouter un ingrédient à une recette
+    @PostMapping(path = "/recettes")
+    public Recette save(Recette recette, String ingredient, String quantité){
+        recette.getIngredients().add(ingredient);
+        recette.getQuantite().add(quantité);
         return recetteInterface.save(recette);
     }
 
@@ -70,13 +78,6 @@ public class RecetteControlleur {
         return resultat;
     }
 
-    //Mettre à jour l'identifiant
-    @PutMapping("/recettes")
-    public Recette saveId(Recette recette,@PathVariable("identifiant")int id){
-        recette.setId_recette(id);
-        return recetteInterface.save(recette);
-    }
-
     //Mettre à jour le nombre de personnes
     @PutMapping("/recettes")
     public Recette saveNb(Recette recette,@PathVariable("nb_personnes")int nb_personnes){
@@ -107,10 +108,8 @@ public class RecetteControlleur {
 
     //Mettre à jour un ingrédient
     @PutMapping("/recettes")
-    public Recette saveIngredient(Recette recette,@PathVariable("description")String ingredient){
-        for(int i = 0;i<taille();i++){
-            if(recette.getIngredients().get(i).equals(ingredient))recette.getQuantite().set(i,ingredient);
-        }
+    public Recette saveIngredient(Recette recette,int indice, @PathVariable("ingredient")String ingredient){
+        recette.getIngredients().set(indice,ingredient);
         return recetteInterface.save(recette);
     }
 
@@ -127,6 +126,20 @@ public class RecetteControlleur {
     @PutMapping("/recettes")
     public Recette saveType(Recette recette,@PathVariable("introduction")RecetteType type){
         recette.setRecetteType(type);
+        return recetteInterface.save(recette);
+    }
+
+    //Mettre à jour un avis
+    @PutMapping("/recettes")
+    public Recette saveAvis(Recette recette,@PathVariable("avis")Avis avis){
+        List<Avis> avisList = recette.getAvis();
+        for(Avis avis1 : avisList){
+            if(avis1.getId_avis() == avis.getId_avis()){
+                avis1.setCommentaire(avis.getCommentaire());
+                avis1.setNote(avis.getNote());
+            }
+        }
+        recette.setAvis(avisList);
         return recetteInterface.save(recette);
     }
 

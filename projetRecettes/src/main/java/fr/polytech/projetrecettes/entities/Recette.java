@@ -2,6 +2,7 @@ package fr.polytech.projetrecettes.entities;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Getter @Setter
@@ -19,4 +20,6 @@ public class Recette {
     private List<String> ingredients;
     @Enumerated(EnumType.STRING)
     private RecetteType recetteType;
+    @OneToMany
+    private List<Avis> avis;
 }
