@@ -5,20 +5,86 @@ import fr.polytech.projetrecettes.entities.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RestController
 public class UtilisateurControlleur {
     @Autowired //injection des dépendances
     private UtilisateurInterface utilisateurInterface;
 
-    @GetMapping("utilisateur/{identifiant}")
-    public Utilisateur getUtilisateur(@PathVariable(value = "identifiant")int identifiant){
-        return utilisateurInterface.findById(identifiant).get(identifiant);
+
+    //renvoie la liste des utilisateurs
+    @GetMapping(value = "utilisateur")
+    public ArrayList<Utilisateur> utilisateurList(){
+        return (ArrayList<Utilisateur>) utilisateurInterface.findAll();
     }
 
-    //Mise à jour
+    //renvoie le nombre d'utilisateurs
+    private int taille() {
+        int taille = 0;
+        for(Utilisateur utilisateur : utilisateurList())taille++;
+        return taille;
+    }
+
+    //ajouter un utilisateur
+    @PostMapping(path = "/utilisateur")
+    public Utilisateur save(Utilisateur utilisateur){
+        return utilisateurInterface.save(utilisateur);
+    }
+
+    //Rechercher un utilisateur par son identifiant
+    @GetMapping("utilisateur/{identifiant}")
+    public Utilisateur getUtilisateur(@PathVariable(value = "identifiant")int identifiant){
+        return utilisateurInterface.findById(identifiant).get();
+    }
+
+
+    //Mise à jour identifiant
     @PutMapping("/utilisateur")
-    public Utilisateur save(Utilisateur utilisateur,@PathVariable("identifiant")int identifiant){
+    public Utilisateur saveId(Utilisateur utilisateur,@PathVariable("identifiant")int identifiant){
         utilisateur.setIdentifiant(identifiant);
+        return utilisateurInterface.save(utilisateur);
+    }
+
+    //Mise à jour nom
+    @PutMapping("/utilisateur")
+    public Utilisateur saveNom(Utilisateur utilisateur,@PathVariable("nom")String nom){
+        utilisateur.setNom(nom);
+        return utilisateurInterface.save(utilisateur);
+    }
+
+    //Mise à jour prénom
+    @PutMapping("/utilisateur")
+    public Utilisateur savePrenom(Utilisateur utilisateur,@PathVariable("prenom")String prenom){
+        utilisateur.setPrenom(prenom);
+        return utilisateurInterface.save(utilisateur);
+    }
+
+    //Mise à jour pseudo
+    @PutMapping("/utilisateur")
+    public Utilisateur savePseudo(Utilisateur utilisateur,@PathVariable("pseudo")String pseudo){
+        utilisateur.setPseudo(pseudo);
+        return utilisateurInterface.save(utilisateur);
+    }
+
+    //Mise à jour mdp
+    @PutMapping("/utilisateur")
+    public Utilisateur saveMdp(Utilisateur utilisateur,@PathVariable("mdp")String mdp){
+        utilisateur.setPseudo(mdp);
+        return utilisateurInterface.save(utilisateur);
+    }
+
+    //Mise à jour mail
+    @PutMapping("/utilisateur*")
+    public Utilisateur saveMail(Utilisateur utilisateur,@PathVariable("mail")String mail){
+        utilisateur.setMail(mail);
+        return utilisateurInterface.save(utilisateur);
+    }
+
+    //Mise à jour admin
+    @PutMapping("/utilisateur")
+    public Utilisateur saveAdmin(Utilisateur utilisateur,@PathVariable("admin")boolean admin){
+        utilisateur.setAdmin(admin);
         return utilisateurInterface.save(utilisateur);
     }
 
