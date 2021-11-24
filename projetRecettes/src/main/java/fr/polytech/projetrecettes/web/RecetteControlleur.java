@@ -42,7 +42,7 @@ public class RecetteControlleur {
 
     //chercher une recette à l'aide de son identifiant
     @GetMapping("recettes/{identifiant}")
-    public Recette getRecette(@PathVariable(value = "id_recette")int id){
+    public Recette getRecette(@PathVariable(value = "identifiant")int id){
         return recetteInterface.findById(id).get();
     }
 
