@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 public class Avis {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_avis;
     private double note;
     private String commentaire;
