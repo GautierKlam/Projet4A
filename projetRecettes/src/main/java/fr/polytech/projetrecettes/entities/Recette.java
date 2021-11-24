@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 public class Recette {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id_recette;
     private String nom;
     private int nb_personnes;
