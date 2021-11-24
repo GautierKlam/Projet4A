@@ -2,6 +2,7 @@ package fr.polytech.projetrecettes.web;
 
 import fr.polytech.projetrecettes.dao.AvisInterface;
 import fr.polytech.projetrecettes.entities.Avis;
+import fr.polytech.projetrecettes.entities.Recette;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,13 @@ public class AvisControlleur {
     //ajouter un avis
     @PostMapping(path = "/avis")
     public Avis save(Avis avis){
+        return avisInterface.save(avis);
+    }
+
+    //Mettre à jour l'identifiant
+    @PutMapping("/{avis}/{identifiant}")
+    public Avis saveIntro(@PathVariable("avis") Avis avis, @PathVariable("identifiant")int identifiant){
+        avis.setId_avis(identifiant);
         return avisInterface.save(avis);
     }
 

@@ -42,7 +42,7 @@ public class RecetteControlleur {
 
     //chercher une recette à l'aide de son identifiant
     @GetMapping("recettes/{identifiant}")
-    public Recette getRecette(@PathVariable(value = "id_recette")int id){
+    public Recette getRecette(@PathVariable(value = "identifiant")int id){
         return recetteInterface.findById(id).get();
     }
 
@@ -76,6 +76,13 @@ public class RecetteControlleur {
             if (recette.getRecetteType() == type) resultat.add(recette);
         }
         return resultat;
+    }
+
+    //Mettre à jour l'identifiant
+    @PutMapping("/{recette}/{identifiant}")
+    public Recette saveIntro(@PathVariable("recette") Recette recette,@PathVariable("identifiant")int identifiant){
+        recette.setId_recette(identifiant);
+        return recetteInterface.save(recette);
     }
 
     //Mettre à jour le nombre de personnes
