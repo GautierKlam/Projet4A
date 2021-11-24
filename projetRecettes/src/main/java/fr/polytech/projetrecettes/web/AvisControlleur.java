@@ -29,23 +29,23 @@ public class AvisControlleur {
         return avisInterface.save(avis);
     }
 
-    //Modifier à jour la note
-    @PutMapping("/avis")
-    public Avis saveNote(Avis avis,@PathVariable("note") double note){
+    //Modifier la note
+    @PutMapping("/{avis}/{note}")
+    public Avis saveNote(@PathVariable("avis") Avis avis,@PathVariable double note){
         avis.setNote(note);
         return avisInterface.save(avis);
     }
 
-    //Mettre à jour le commentaire
-    @PutMapping("/avis")
-    public Avis saveCommentaire(Avis avis,@PathVariable("commentaire")String commentaire){
+    //Modifier le commentaire
+    @PutMapping("/{avis}/{commentaire}")
+    public Avis saveCommentaire(@PathVariable("avis") Avis avis,@PathVariable String commentaire){
         avis.setCommentaire(commentaire);
         return avisInterface.save(avis);
     }
 
     //suppression d'un avis
     @DeleteMapping("/avis/{id_avis}")
-    public void save(@PathVariable("id_avis")int id){
+    public void delete(@PathVariable int id){
         avisInterface.deleteById(id);
     }
 }

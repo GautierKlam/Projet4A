@@ -33,8 +33,8 @@ public class RecetteControlleur {
     }
 
     //ajouter un ingrédient à une recette
-    @PostMapping(path = "/recettes")
-    public Recette save(Recette recette, String ingredient, String quantité){
+    @PostMapping(path = "/{recette}/ingredients")
+    public Recette save(@PathVariable("recette") Recette recette, String ingredient, String quantité){
         recette.getIngredients().add(ingredient);
         recette.getQuantite().add(quantité);
         return recetteInterface.save(recette);
@@ -79,43 +79,43 @@ public class RecetteControlleur {
     }
 
     //Mettre à jour le nombre de personnes
-    @PutMapping("/recettes")
-    public Recette saveNb(Recette recette,@PathVariable("nb_personnes")int nb_personnes){
+    @PutMapping("/{recette}/{nb_personnes}")
+    public Recette saveNb(@PathVariable("recette") Recette recette,@PathVariable("nb_personnes")int nb_personnes){
         recette.setNb_personnes(nb_personnes);
         return recetteInterface.save(recette);
     }
 
     //Mettre à jour le nom
-    @PutMapping("/recettes")
-    public Recette saveNom(Recette recette,@PathVariable("nom")String nom){
+    @PutMapping("/{recette}/{nom}")
+    public Recette saveNom(@PathVariable("recette") Recette recette,@PathVariable("nom")String nom){
         recette.setNom(nom);
         return recetteInterface.save(recette);
     }
 
     //Mettre à jour l'introduction
-    @PutMapping("/recettes")
-    public Recette saveIntro(Recette recette,@PathVariable("introduction")String introduction){
+    @PutMapping("/{recette}/{introduction}")
+    public Recette saveIntro(@PathVariable("recette") Recette recette,@PathVariable("introduction")String introduction){
         recette.setIntroduction(introduction);
         return recetteInterface.save(recette);
     }
 
     //Mettre à jour la description
-    @PutMapping("/recettes")
-    public Recette saveDescription(Recette recette,@PathVariable("description")String description){
+    @PutMapping("/{recette}/{description}")
+    public Recette saveDescription(@PathVariable("recette") Recette recette,@PathVariable("description")String description){
         recette.setDescription(description);
         return recetteInterface.save(recette);
     }
 
     //Mettre à jour un ingrédient
-    @PutMapping("/recettes")
-    public Recette saveIngredient(Recette recette,int indice, @PathVariable("ingredient")String ingredient){
+    @PutMapping("/{recette}/{ingredient}")
+    public Recette saveIngredient(@PathVariable("recette") Recette recette, int indice, @PathVariable("ingredient")String ingredient){
         recette.getIngredients().set(indice,ingredient);
         return recetteInterface.save(recette);
     }
 
     //Mettre à jour la quantité d'un ingrédient
-    @PutMapping("/recettes")
-    public Recette saveQuantite(Recette recette, String ingredient, @PathVariable("quantite")String quantite){
+    @PutMapping("/{recette}/{ingredient}/{quantite}")
+    public Recette saveQuantite(@PathVariable("recette") Recette recette,@PathVariable("ingredient") String ingredient, @PathVariable("quantite")String quantite){
         for(int i = 0; i<taille();i++){
             if(recette.getIngredients().get(i).equals(ingredient))recette.getQuantite().set(i,quantite);
         }
@@ -123,15 +123,15 @@ public class RecetteControlleur {
     }
 
     //Mettre à jour le type
-    @PutMapping("/recettes")
-    public Recette saveType(Recette recette,@PathVariable("introduction")RecetteType type){
+    @PutMapping("/{recette}/{type}")
+    public Recette saveType(@PathVariable("recette") Recette recette,@PathVariable("type")RecetteType type){
         recette.setRecetteType(type);
         return recetteInterface.save(recette);
     }
 
     //Mettre à jour un avis
-    @PutMapping("/recettes")
-    public Recette saveAvis(Recette recette,@PathVariable("avis")Avis avis){
+    @PutMapping("/{recette}/{avis}")
+    public Recette saveAvis(@PathVariable("recette") Recette recette,@PathVariable("avis")Avis avis){
         List<Avis> avisList = recette.getAvis();
         for(Avis avis1 : avisList){
             if(avis1.getId_avis() == avis.getId_avis()){
@@ -144,8 +144,8 @@ public class RecetteControlleur {
     }
 
     //Suppression d'un ingredient
-    @PutMapping("/recettes")
-    public Recette deleteIngredient(Recette recette,@PathVariable("description")String ingredient){
+    @DeleteMapping("/{recette}/{ingredient}")
+    public Recette deleteIngredient(@PathVariable("recette") Recette recette,@PathVariable("description")String ingredient){
         for(int i = 0; i<taille();i++){
             if(recette.getIngredients().get(i).equals(ingredient)){
                 recette.getIngredients().remove(i);
