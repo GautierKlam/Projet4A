@@ -8,11 +8,11 @@ import javax.persistence.*;
 @Entity
 public class Avis {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_avis;
     private double note;
     private String commentaire;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_recette")
     private Recette recette;
 
