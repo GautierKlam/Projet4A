@@ -1,6 +1,7 @@
 package fr.polytech.projetrecettes.web;
 
 import fr.polytech.projetrecettes.dao.UtilisateurInterface;
+import fr.polytech.projetrecettes.entities.Avis;
 import fr.polytech.projetrecettes.entities.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,51 +39,50 @@ public class UtilisateurControlleur {
         return utilisateurInterface.findById(identifiant).get();
     }
 
-
     //Mise à jour identifiant
-    @PutMapping("/utilisateur")
+    @PutMapping("/{utilisateur}/{id}")
     public Utilisateur saveId(Utilisateur utilisateur,@PathVariable("identifiant")int identifiant){
         utilisateur.setIdentifiant(identifiant);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour nom
-    @PutMapping("/utilisateur")
+    @PutMapping("/{utilisateur}/{nom}")
     public Utilisateur saveNom(Utilisateur utilisateur,@PathVariable("nom")String nom){
         utilisateur.setNom(nom);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour prénom
-    @PutMapping("/utilisateur")
+    @PutMapping("/{utilisateur}/{prenom}")
     public Utilisateur savePrenom(Utilisateur utilisateur,@PathVariable("prenom")String prenom){
         utilisateur.setPrenom(prenom);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour pseudo
-    @PutMapping("/utilisateur")
+    @PutMapping("/{utilisateur}/{pseudo}")
     public Utilisateur savePseudo(Utilisateur utilisateur,@PathVariable("pseudo")String pseudo){
         utilisateur.setPseudo(pseudo);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour mdp
-    @PutMapping("/utilisateur")
+    @PutMapping("/{utilisateur}/{mdp}")
     public Utilisateur saveMdp(Utilisateur utilisateur,@PathVariable("mdp")String mdp){
         utilisateur.setPseudo(mdp);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour mail
-    @PutMapping("/utilisateur*")
+    @PutMapping("/{utilisateur}/{mail}")
     public Utilisateur saveMail(Utilisateur utilisateur,@PathVariable("mail")String mail){
         utilisateur.setMail(mail);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour admin
-    @PutMapping("/utilisateur")
+    @PutMapping("/{utilisateur}/{admin}")
     public Utilisateur saveAdmin(Utilisateur utilisateur,@PathVariable("admin")boolean admin){
         utilisateur.setAdmin(admin);
         return utilisateurInterface.save(utilisateur);
