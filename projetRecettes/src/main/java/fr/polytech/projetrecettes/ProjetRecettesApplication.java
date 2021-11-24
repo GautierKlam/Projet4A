@@ -1,6 +1,5 @@
 package fr.polytech.projetrecettes;
 
-import fr.polytech.projetrecettes.dao.AvisInterface;
 import fr.polytech.projetrecettes.dao.RecetteInterface;
 import fr.polytech.projetrecettes.dao.UtilisateurInterface;
 import fr.polytech.projetrecettes.entities.Avis;
@@ -22,12 +21,8 @@ public class ProjetRecettesApplication {
     }
 
     @Bean
-    CommandLineRunner start(RecetteInterface recetteInterface, UtilisateurInterface utilisateurInterface, AvisInterface avisInterface){
+    CommandLineRunner start(RecetteInterface recetteInterface, UtilisateurInterface utilisateurInterface){
         return args -> {
-            avisInterface.save(new Avis(1,5,"Super recette, je recommande !"));
-            avisInterface.save(new Avis(2,3.5,"Bravo, tout le monde a adoré !"));
-            avisInterface.save(new Avis(3,1,"Pas fou, on sent à peine le goût de la viande..."));
-
             utilisateurInterface.save(new Utilisateur(1,"Orlabite","Jade","Le canard","6969","OKLM@gmail.fr",true));
             utilisateurInterface.save(new Utilisateur(2,"Kulfor","Jean","Le pigeon","6969","OKLM2@gmail.fr",true));
 

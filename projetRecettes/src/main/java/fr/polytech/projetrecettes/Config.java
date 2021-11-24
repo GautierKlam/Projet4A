@@ -1,6 +1,5 @@
 package fr.polytech.projetrecettes;
 
-import fr.polytech.projetrecettes.web.AvisControlleur;
 import fr.polytech.projetrecettes.web.RecetteControlleur;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +12,6 @@ public class Config {
     public ResourceConfig maconfiguration(){
         ResourceConfig resourceConfig = new ResourceConfig();
         resourceConfig.register(RecetteControlleur.class);
-        resourceConfig.register(AvisControlleur.class);
         return resourceConfig;
     }
 

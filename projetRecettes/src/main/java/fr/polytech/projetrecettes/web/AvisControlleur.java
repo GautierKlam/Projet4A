@@ -1,4 +1,4 @@
-package fr.polytech.projetrecettes.web;
+/*package fr.polytech.projetrecettes.web;
 
 import fr.polytech.projetrecettes.dao.AvisInterface;
 import fr.polytech.projetrecettes.entities.Avis;
@@ -57,3 +57,4 @@ public class AvisControlleur {
         avisInterface.deleteById(id);
     }
 }
+*/
