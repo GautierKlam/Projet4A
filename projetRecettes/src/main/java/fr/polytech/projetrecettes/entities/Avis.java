@@ -15,9 +15,14 @@ public class Avis {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_recette")
     private Recette recette;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_utilisateur")
+    private Utilisateur utilisateur;
 
-    public Avis(double note, String commentaire) {
+    public Avis(double note, String commentaire, Recette recette, Utilisateur utilisateur) {
         this.note = note;
         this.commentaire = commentaire;
+        this.recette = recette;
+        this.utilisateur = utilisateur;
     }
 }

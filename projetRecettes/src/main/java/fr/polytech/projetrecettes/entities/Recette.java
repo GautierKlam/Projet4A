@@ -16,23 +16,20 @@ public class Recette {
     private int nb_personnes;
     private String introduction;
     private String description;
-    @ElementCollection
-    private List<String> quantite;
-    @ElementCollection
-    private List<String> ingredients;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "recette")
+    private List<Ingredient> ingredients;
     @Enumerated(EnumType.STRING)
     private RecetteType recetteType;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy="recette")
     private List<Avis> avis;
 
-    public Recette(String nom, int nb_personnes, String introduction, String description, List<String> quantite, List<String> ingredients, RecetteType recetteType, List<Avis> avis) {
+    public Recette(String nom, int nb_personnes, String introduction, String description, List<Ingredient> ingredients, RecetteType recetteType, List<Avis> avis) {
         this.nom = nom;
         this.nb_personnes = nb_personnes;
         this.introduction = introduction;
         this.description = description;
-        this.quantite = quantite;
-        this.ingredients = ingredients;
         this.recetteType = recetteType;
         this.avis = avis;
+        this.ingredients = ingredients;
     }
 }
