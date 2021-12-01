@@ -20,7 +20,7 @@
 
       while($row = $sth->fetch()) {
           echo "<tr>";
-          $id=$row['identifiant'];
+          $id=$row['id_recette'];
         $intr= utf8_encode($row['introduction']);
         $nom=utf8_encode($row['nom']);
         $typerecette=utf8_encode($row['recette_type']);
