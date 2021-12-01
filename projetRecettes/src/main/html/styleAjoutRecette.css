@@ -1,0 +1,49 @@
+body{
+    margin:0;
+   padding:0;
+   font-family: Verdana, sans-serif;
+   
+}
+
+h2 {
+    
+    text-align: center;
+    background-color: gold;
+    margin-top: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+label
+{   
+	display: block;
+	width: 150px;
+    float: left;
+    color: gold;
+}
+form {
+    margin-left: 400px;
+    margin-top: 100px;
+    
+}
+form input, textarea{
+    border:medium solid gold;
+    background-color:white;
+}
+.boutons {
+    margin-left: 150px;
+    font-size: 20px;
+    
+}
+
+
+input[type='button']:hover, input[type='submit']:hover {
+    background-color:gold;
+    
+}
+
+
+
+
+
+
