@@ -27,6 +27,7 @@ public class ProjetRecettesApplication {
             recetteInterface.save(new Recette("Magret de canard",2,"Super","Description magret de canard",new ArrayList<Ingredient>(){{add(new Ingredient("Magret de canard","2",recetteInterface.getById(2)));}}, RecetteType.PLAT, new ArrayList<Avis>(){{add(new Avis(5,"Super recette, je recommande !",recetteInterface.getById(2),utilisateurInterface.getById(1)));}}));
             recetteInterface.save(new Recette("Avocats",1,"Top","Description avocats",new ArrayList<Ingredient>(){{add(new Ingredient("Avocat","1",recetteInterface.getById(3)));}}, RecetteType.ENTREE, new ArrayList<Avis>(){{add(new Avis(3.5,"Bravo, tout le monde a adoré !",recetteInterface.getById(3),utilisateurInterface.getById(1)));}}));
             recetteInterface.save(new Recette("Tomates farcies",2,"Cool","Descritpion tomates farcies",new ArrayList<Ingredient>(){{add(new Ingredient("Tomates","4",recetteInterface.getById(4)));add(new Ingredient("Farce","150g",recetteInterface.getById(4)));}}, RecetteType.PLAT,new ArrayList<Avis>(){{add(new Avis(1,"Pas fou, on sent à peine le goût de la viande...",recetteInterface.getById(4),utilisateurInterface.getById(2)));}}));
+            recetteInterface.save(new Recette("Tomates provençales",4,"Génial","Description tomates",new ArrayList<Ingredient>(){{add(new Ingredient("Tomates","8",recetteInterface.getById(5)));}}, RecetteType.PLAT, new ArrayList<Avis>(){{add(new Avis(3.5,"Topitop !",recetteInterface.getById(5),utilisateurInterface.getById(2)));}}));
         };
     }
 }
