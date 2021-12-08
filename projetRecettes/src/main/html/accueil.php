@@ -1,6 +1,7 @@
 
 <html>
     <head>
+
         <title>Accueil Recette</title>
         	<link rel="stylesheet" href="accueil.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
