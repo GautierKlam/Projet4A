@@ -33,6 +33,7 @@ public class UtilisateurControlleur {
     @GetMapping("/utilisateurs/{identifiant}")
     public Utilisateur getUtilisateur(@PathVariable(value = "identifiant")int identifiant){
         return utilisateurInterface.findById(identifiant).get();
+        //return utilisateurInterface.findById(identifiant).get().getNom();
     }
 
     //Mise à jour identifiant
