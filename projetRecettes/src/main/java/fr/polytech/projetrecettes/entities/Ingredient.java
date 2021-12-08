@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@AllArgsConstructor @NoArgsConstructor @Getter @Setter @Data
+@AllArgsConstructor @NoArgsConstructor @Getter @Setter @Data @ToString
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
