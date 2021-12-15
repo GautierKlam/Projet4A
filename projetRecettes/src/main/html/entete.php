@@ -10,7 +10,7 @@ $page = file_get_contents("http://localhost:8888/projetrecettes/utilisateurs");
         $test = $obj['_embedded'];
         foreach ($test['utilisateurs'] as $v)
                     {
-                   if ($v['isConnected']==1){
+                    if $v['isConnected']==1{
 
     echo"<header>
     <div class='entete'>
@@ -26,7 +26,8 @@ $page = file_get_contents("http://localhost:8888/projetrecettes/utilisateurs");
     <a id='connexion' href='pageDeconnexion.php'>Déconnexion</a></div>
     </header>";
 }
-}
+
+
 
 
 ?>
