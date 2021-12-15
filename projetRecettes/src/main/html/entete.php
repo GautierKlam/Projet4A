@@ -1,33 +1,45 @@
 <html>
-<link rel="stylesheet" href="entete.css" type="text/css">
-<!-- CSS only -->
-<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
--->
-</html>
-<?php
-$page = file_get_contents("http://localhost:8888/projetrecettes/utilisateurs");
+<?php include("enteteCo.php");?>
+<link rel="stylesheet" href="styleConnexion.css" type="text/css">
+	<body>
+	<title>Connexion</title>
+		<form method="post" >
+		    <p>
+			<label>Pseudo ou e-mail :</label>
+			<input type="text" name="pseudo"  value="">
+			</p>
+
+			<p>
+			<label>Mot de passe:</label>
+			<input type="password", name="mdp", value="">
+		    </p>
+
+            <p>
+            <input class:'boutons' type="submit" value="Connexion" name="connecter">
+            <a class:'boutons' href="creationCompte.php"><input type="button" value="Créer un compte"></a>
+            </p>
+
+        <?php
+        $page = file_get_contents("http://localhost:8888/projetrecettes/utilisateurs");
         $obj=json_decode($page,true);
         $test = $obj['_embedded'];
-        foreach ($test['utilisateurs'] as $v)
-                    {
-                    if $v['isConnected']==1{
 
-    echo"<header>
-    <div class='entete'>
-    <a id='accueil' href='accueil.php'>Page d'accueil</a>
+        if(isset($_POST['connecter']))
+        {
+            foreach ($test['utilisateurs'] as $v)
+            {
+                $pseudo = $v['pseudo'];
+                $mdp = $v['mdp'];
+                if ($_POST['pseudo']==$pseudo AND $_POST['mdp']==$mdp)
+                {
+                    $v['isConnected']=1;
+                    header("Location: accueil.php");
+                }
+            }
+            echo 'Identifiant ou mot de passe incorrect';
+        }
+        ?>
 
-    <a id='connexion' href='pageConnexion.php'>Connexion</a></div>
-    </header>";
-}else{
- echo"<header>
-    <div class='entete'>
-    <a id='accueil' href='accueil.php'>Page d'accueil</a>
-
-    <a id='connexion' href='pageDeconnexion.php'>Déconnexion</a></div>
-    </header>";
-}
-
-
-
-
-?>
+		</form>
+	</body>
+</html>
