@@ -16,4 +16,5 @@ public class Utilisateur {
     private String mdp;
     private String mail;
     private boolean admin;
+    private boolean isConnected;
 }
