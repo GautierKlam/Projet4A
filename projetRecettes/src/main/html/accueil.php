@@ -8,7 +8,7 @@
         	<link rel="stylesheet" href="accueil.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     </head>
-    <?php include ('enteteDeco.php');?>
+    <?php include ('entete.php');?>
     <body>
       <h1>Bienvenue sur notre site de recette collaboratif !</h1>
       <h2>Voici l'ensemble des recettes disponibles, cliquez sur le nom pour voir ses avis et sa description entière</h2>

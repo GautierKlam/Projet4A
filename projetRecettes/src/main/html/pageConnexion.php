@@ -1,5 +1,5 @@
 <html>
-<?php include("enteteCo.php");?>
+<?php include("entete.php");?>
 <link rel="stylesheet" href="styleConnexion.css" type="text/css">
 	<body>
 	<title>Connexion</title>
