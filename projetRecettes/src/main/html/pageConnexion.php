@@ -32,7 +32,7 @@
                 $mdp = $v['mdp'];
                 if ($_POST['pseudo']==$pseudo AND $_POST['mdp']==$mdp)
                 {
-                    $v['isConnected']=1;
+                    $v['isconnected']=true;
                     header("Location: accueil.php");
                 }
             }
