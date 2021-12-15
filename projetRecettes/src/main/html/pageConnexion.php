@@ -1,5 +1,5 @@
 <html>
-<?php include("entete.php");?>
+<?php include("enteteCo.php");?>
 <link rel="stylesheet" href="styleConnexion.css" type="text/css">
 	<body>
 	<title>Connexion</title>
@@ -16,7 +16,7 @@
 
             <p>
             <input class:'boutons' type="submit" value="Connexion" name="connecter">
-            <a* class:'boutons' href="creationCompte.php"><input type="button" value="Créer un compte"></a>
+            <a class:'boutons' href="creationCompte.php"><input type="button" value="Créer un compte"></a>
             </p>
 
         <?php
