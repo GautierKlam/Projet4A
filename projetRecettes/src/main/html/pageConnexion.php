@@ -11,12 +11,12 @@
 
 			<p>
 			<label>Mot de passe:</label>
-			<input  type="password", name="mdp", value="">
+			<input type="password", name="mdp", value="">
 		    </p>
 
             <p>
             <input class:'boutons' type="submit" value="Connexion" name="connecter">
-            <a class:'boutons' href="creationCompte.php"><input type="button" value="Créer un compte"></a>
+            <a* class:'boutons' href="creationCompte.php"><input type="button" value="Créer un compte"></a>
             </p>
 
         <?php
@@ -34,11 +34,8 @@
                 {
                     header("Location: accueil.php");
                 }
-                else
-                {
-                    echo "pseudo incorrect";
-                }
             }
+            echo 'Identifiant ou mot de passe incorrect';
         }
         ?>
 
