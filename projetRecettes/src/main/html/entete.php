@@ -9,25 +9,22 @@ $page = file_get_contents("http://localhost:8888/projetrecettes/utilisateurs");
         $obj=json_decode($page,true);
         $test = $obj['_embedded'];
         foreach ($test['utilisateurs'] as $v)
-                    {
-                    if $v['isConnected']==1{
+        {
+            if $v['isConnected']==1
+            {
+                echo"<header>
+                <div class='entete'>
+                <a id='accueil' href='accueil.php'>Page d'accueil</a>
+                
+                <a id='connexion' href='pageConnexion.php'>Connexion</a></div>
+                </header>";
+            }else{
+                 echo"<header>
+                <div class='entete'>
+                <a id='accueil' href='accueil.php'>Page d'accueil</a>
 
-    echo"<header>
-    <div class='entete'>
-    <a id='accueil' href='accueil.php'>Page d'accueil</a>
-
-    <a id='connexion' href='pageConnexion.php'>Connexion</a></div>
-    </header>";
-}else{
- echo"<header>
-    <div class='entete'>
-    <a id='accueil' href='accueil.php'>Page d'accueil</a>
-
-    <a id='connexion' href='pageDeconnexion.php'>Déconnexion</a></div>
-    </header>";
-}
-
-
-
-
+                <a id='connexion' href='pageDeconnexion.php'>Déconnexion</a></div>
+                </header>";
+            }
+        }
 ?>
