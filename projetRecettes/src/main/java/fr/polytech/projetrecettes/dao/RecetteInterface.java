@@ -14,5 +14,5 @@ import java.util.List;
 public interface RecetteInterface extends JpaRepository<Recette, Integer> {
     public List<Recette> findByNomContaining(String nom);
     public List<Recette> findByRecetteType(RecetteType recetteType);
-    public List<Recette> findByIngredientsIsContaining(Ingredient[] ingredients); //marche po
+    public List<Recette> findByIngredientsContaining(Ingredient[] ingredients); //marche po
 }
