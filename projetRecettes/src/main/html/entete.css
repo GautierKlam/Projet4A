@@ -6,9 +6,6 @@ header{
     color: ghostwhite;
     padding-top: 10px;
     padding-bottom: 30px;
-
-
-
 }
 #connexion, #accueil{
     text-decoration:none;
@@ -18,7 +15,5 @@ header{
 
 .entete{
     float:right;
-
     padding-bottom: 20px;
 }
-

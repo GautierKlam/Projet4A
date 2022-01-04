@@ -1,16 +1,33 @@
+<?php
+	session_start();
+    if(!isset($_SESSION['pseudo'])){
+        header('Location: accueil.php');
+        exit;
+    }
+?>
+
 <html>
-	<header>
+
+	<head>
+	    <?php include("connexion.php");?>
 		<title>Déconnexion</title>
 		<link rel="stylesheet" href="deconnexion.css" type="text/css">
-	</header>
+	</head>
+
+	<?php include ('entete.php');?>
+
 	<body>
 		<form method="post">
-			<?php
-				echo "Voulez-vous vraiment vous déconnecter ?";
-				echo"<br/><br/>"."<a href='accueil.php'><input type='button' value='Annuler' name='annul'></a>"."<input type='submit' value='Déconnexion' name='deco'>";
-			    if(isset($_POST['connecter']))
+			<div>Voulez-vous vraiment vous déconnecter ?<div>
+			<a class:'boutons' href="accueil.php"> <input type="button" value="Annuler"></a>
+			<a class:'boutons'><input type="submit" value="Déconnexion" name="deconnecter"></a>
+
+		    <?php
+            	if(isset($_POST['deconnecter']))
                 {
-                    header("Location: pageConnexion.php");
+					session_destroy();
+					header('Location: accueil.php');
+					exit;
                 }
 			?>
 		</form>

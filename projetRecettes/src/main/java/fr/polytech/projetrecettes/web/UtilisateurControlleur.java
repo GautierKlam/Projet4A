@@ -11,7 +11,6 @@ public class UtilisateurControlleur {
     @Autowired //injection des dépendances
     private UtilisateurInterface utilisateurInterface;
 
-
     //renvoie la liste des utilisateurs
     @GetMapping(value = "/utilisateurs")
     public ArrayList<Utilisateur> utilisateurList(){
@@ -64,9 +63,9 @@ public class UtilisateurControlleur {
         return utilisateurInterface.save(utilisateur);
     }
     //Mise à jour pseudo
-    @PutMapping("/{utilisateur}/isConnected")
+    @PutMapping("/{utilisateur}/isconnected")
     public Utilisateur saveConnexion(@PathVariable Utilisateur utilisateur,@PathVariable("pseudo")boolean isConnected){
-        utilisateur.setConnected(isConnected);
+        utilisateur.setIsconnected(isConnected);
         return utilisateurInterface.save(utilisateur);
     }
     //Mise à jour mdp
