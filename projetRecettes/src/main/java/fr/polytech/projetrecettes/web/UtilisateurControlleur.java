@@ -62,6 +62,7 @@ public class UtilisateurControlleur {
         utilisateur.setPseudo(pseudo);
         return utilisateurInterface.save(utilisateur);
     }
+<<<<<<< HEAD
     //Mise à jour pseudo
     @PutMapping("/{utilisateur}/isconnected")
     public Utilisateur saveConnexion(@PathVariable Utilisateur utilisateur,@PathVariable("pseudo")boolean isConnected){
@@ -72,6 +73,13 @@ public class UtilisateurControlleur {
     @PutMapping("/{utilisateur}/mdp")
     public Utilisateur saveMdp(@PathVariable Utilisateur utilisateur,@PathVariable("mdp")String mdp){
         utilisateur.setPseudo(mdp);
+=======
+
+    //Mise à jour connexion
+    @PutMapping("/{utilisateur}/isconnected")
+    public Utilisateur saveConnexion(@PathVariable Utilisateur utilisateur,@PathVariable("pseudo")boolean isconnected){
+        utilisateur.setIsconnected(isconnected);
+>>>>>>> cbf6ee0b77a98097cced7808b71ad95c5b3304a6
         return utilisateurInterface.save(utilisateur);
     }
 
