@@ -6,7 +6,6 @@
 </html>
 
 <?php
-<<<<<<< HEAD
     if(isset($_SESSION['pseudo'])){
         echo"<header>
             <div class='entete'>
@@ -49,7 +48,7 @@
         </header>";
     }*/
 ?>
-=======
+
 $page = file_get_contents("http://localhost:8888/projetrecettes/utilisateurs");
         $obj=json_decode($page,true);
         $test = $obj['_embedded'];
@@ -81,4 +80,3 @@ $page = file_get_contents("http://localhost:8888/projetrecettes/utilisateurs");
         }
 		
 ?>
->>>>>>> cbf6ee0b77a98097cced7808b71ad95c5b3304a6

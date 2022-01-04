@@ -36,7 +36,6 @@
             {
                 foreach ($test['utilisateurs'] as $v)
                 {
-<<<<<<< HEAD
                     $pseudo = $v['pseudo'];
                     $mdp = $v['mdp'];
                     if ($_POST['pseudo']==$pseudo AND $_POST['mdp']==$mdp)
@@ -44,10 +43,8 @@
                         $_SESSION['pseudo'] = $pseudo;
                         header("Location: accueil.php");
                     }
-=======
                     $v['isconnected']=true;
                     header("Location: accueil.php");
->>>>>>> cbf6ee0b77a98097cced7808b71ad95c5b3304a6
                 }
                 echo 'Identifiant ou mot de passe incorrect';
             }

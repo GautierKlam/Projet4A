@@ -36,62 +36,49 @@ public class UtilisateurControlleur {
     }
 
     //Mise à jour identifiant
-    @PutMapping("/{utilisateur}/identifiant")
+    @PutMapping("/{utilisateur}/{identifiant}")
     public Utilisateur saveId(@PathVariable Utilisateur utilisateur, @PathVariable int identifiant){
         utilisateur.setIdentifiant(identifiant);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour nom
-    @PutMapping("/{utilisateur}/nom")
+    @PutMapping("/{utilisateur}/{nom}")
     public Utilisateur saveNom(@PathVariable Utilisateur utilisateur,@PathVariable String nom){
         utilisateur.setNom(nom);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour prénom
-    @PutMapping("/{utilisateur}/prenom")
+    @PutMapping("/{utilisateur}/{prenom}")
     public Utilisateur savePrenom(@PathVariable Utilisateur utilisateur,@PathVariable("prenom")String prenom){
         utilisateur.setPrenom(prenom);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour pseudo
-    @PutMapping("/{utilisateur}/pseudo")
+    @PutMapping("/{utilisateur}/{pseudo}")
     public Utilisateur savePseudo(@PathVariable Utilisateur utilisateur,@PathVariable("pseudo")String pseudo){
         utilisateur.setPseudo(pseudo);
         return utilisateurInterface.save(utilisateur);
     }
-<<<<<<< HEAD
-    //Mise à jour pseudo
-    @PutMapping("/{utilisateur}/isconnected")
-    public Utilisateur saveConnexion(@PathVariable Utilisateur utilisateur,@PathVariable("pseudo")boolean isConnected){
-        utilisateur.setIsconnected(isConnected);
-        return utilisateurInterface.save(utilisateur);
-    }
-    //Mise à jour mdp
-    @PutMapping("/{utilisateur}/mdp")
-    public Utilisateur saveMdp(@PathVariable Utilisateur utilisateur,@PathVariable("mdp")String mdp){
-        utilisateur.setPseudo(mdp);
-=======
 
-    //Mise à jour connexion
-    @PutMapping("/{utilisateur}/isconnected")
-    public Utilisateur saveConnexion(@PathVariable Utilisateur utilisateur,@PathVariable("pseudo")boolean isconnected){
-        utilisateur.setIsconnected(isconnected);
->>>>>>> cbf6ee0b77a98097cced7808b71ad95c5b3304a6
+    //Mise à jour mdp
+    @PutMapping("/{utilisateur}/{mdp}")
+    public Utilisateur saveMdp(@PathVariable Utilisateur utilisateur,@PathVariable("mdp")String mdp) {
+        utilisateur.setPseudo(mdp);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour mail
-    @PutMapping("/{utilisateur}/mail")
+    @PutMapping("/{utilisateur}/{mail}")
     public Utilisateur saveMail(@PathVariable Utilisateur utilisateur,@PathVariable("mail")String mail){
         utilisateur.setMail(mail);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour admin
-    @PutMapping("/{utilisateur}/admin")
+    @PutMapping("/{utilisateur}/{admin}")
     public Utilisateur saveAdmin(@PathVariable Utilisateur utilisateur,@PathVariable("admin")boolean admin){
         utilisateur.setAdmin(admin);
         return utilisateurInterface.save(utilisateur);
