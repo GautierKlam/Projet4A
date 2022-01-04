@@ -48,35 +48,3 @@
         </header>";
     }*/
 ?>
-
-$page = file_get_contents("http://localhost:8888/projetrecettes/utilisateurs");
-        $obj=json_decode($page,true);
-        $test = $obj['_embedded'];
-		$verif=false;
-        foreach ($test['utilisateurs'] as $v)
-        {
-            if ($v['isconnected']==true)
-            {
-				$verif=true;
-            }else{
-				$verif=false;
-            }
-        }
-		if ($verif == true){
-			echo"<header>
-                <div class='entete'>
-                <a id='accueil' href='accueil.php'>Page d'accueil</a>
-                
-                <a id='connexion' href='pageConnexion.php'>Connexion</a></div>
-                </header>";
-		}
-		else{
-			 echo"<header>
-			<div class='entete'>
-			<a id='accueil' href='accueil.php'>Page d'accueil</a>
-
-			<a id='connexion' href='pageDeconnexion.php'>Déconnexion</a></div>
-			</header>";
-        }
-		
-?>

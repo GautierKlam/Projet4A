@@ -18,8 +18,8 @@
 
 	<body>
 		<form method="post">
-			<div>Voulez-vous vraiment vous déconnecter ?<div>
-			<a class:'boutons' href="accueil.php"> <input type="button" value="Annuler"></a>
+			<div>Voulez-vous vraiment vous déconnecter ?<div><br>
+			<a class:'boutons' href="accueil.php"> <input type="button" value="Annuler"></a>&ensp;
 			<a class:'boutons'><input type="submit" value="Déconnexion" name="deconnecter"></a>
 
 		    <?php

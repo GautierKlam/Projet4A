@@ -43,8 +43,6 @@
                         $_SESSION['pseudo'] = $pseudo;
                         header("Location: accueil.php");
                     }
-                    $v['isconnected']=true;
-                    header("Location: accueil.php");
                 }
                 echo 'Identifiant ou mot de passe incorrect';
             }

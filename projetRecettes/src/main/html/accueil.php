@@ -14,20 +14,22 @@
         <h2>Voici l'ensemble des recettes disponibles, cliquez sur le nom pour voir ses avis et sa description entière</h2>
 
         <?php
-            $sth = $conn->query("SELECT * FROM recette");
-            $sth->execute();
+            $page = file_get_contents('http://localhost:8888/projetrecettes/recettes');
+            $obj=json_decode($page,true);
+            $test= $obj['_embedded'];
+      
+      
             echo "<table>";
             echo "<caption>Liste des recettes (nom, petite description et type)</caption>";
-
-            while($row = $sth->fetch()) {
+            foreach ($test['recettes'] as $v) {
                 echo "<tr>";
-                $id=$row['id_recette'];
-                $intr= utf8_encode($row['introduction']);
-                $nom=utf8_encode($row['nom']);
-                $typerecette=utf8_encode($row['recette_type']);
+                $id=0;
+                $intr=$v['introduction'];
+                $nom=$v['nom'];
+                $typerecette=$v['recetteType'];
                 echo"<td><a href='voirrecette.php?id=$id'>".$nom."</a></td><td>".$intr."</td><td>".$typerecette."</td></tr>";
-            }
-            echo "</table>"
+            }  
+            echo "</table>";
         ?>
     </body>
 </html>
