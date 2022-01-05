@@ -15,15 +15,16 @@
 
         <?php
             $page = file_get_contents('http://localhost:8888/projetrecettes/recettes');
-            $obj=json_decode($page,true);
-            $test= $obj['_embedded'];
+            $obj = json_decode($page,true);
+            $test = $obj['_embedded'];
       
       
             echo "<table>";
             echo "<caption>Liste des recettes (nom, petite description et type)</caption>";
+            $id = 0;
             foreach ($test['recettes'] as $v) {
+                $id++;
                 echo "<tr>";
-                $id=0;
                 $intr=$v['introduction'];
                 $nom=$v['nom'];
                 $typerecette=$v['recetteType'];
