@@ -22,8 +22,11 @@ public class Recette {
     private RecetteType recetteType;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy="recette")
     private List<Avis> avis;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_utilisateur")
+    private Utilisateur utilisateur;
 
-    public Recette(String nom, int nb_personnes, String introduction, String description, List<Ingredient> ingredients, RecetteType recetteType, List<Avis> avis) {
+    public Recette(String nom, int nb_personnes, String introduction, String description, List<Ingredient> ingredients, RecetteType recetteType, List<Avis> avis, Utilisateur utilisateur) {
         this.nom = nom;
         this.nb_personnes = nb_personnes;
         this.introduction = introduction;
@@ -31,5 +34,6 @@ public class Recette {
         this.recetteType = recetteType;
         this.avis = avis;
         this.ingredients = ingredients;
+        this.utilisateur = utilisateur;
     }
 }

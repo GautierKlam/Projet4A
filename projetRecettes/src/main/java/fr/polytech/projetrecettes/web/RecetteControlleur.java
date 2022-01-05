@@ -79,8 +79,8 @@ public class RecetteControlleur {
         return resultat;
     }*/
 
-    //chercher une recette qui contiennent les ingrédients demandés
-    /*@GetMapping("/recettes/{ingredients}")
+    /*chercher une recette qui contiennent les ingrédients demandés
+    @GetMapping("/recettes/{ingredients}")
     public ArrayList<Recette> getRecette(@PathVariable String[] ingredients){
         ArrayList<Recette> resultat = new ArrayList<>();
         boolean compatible = true;
