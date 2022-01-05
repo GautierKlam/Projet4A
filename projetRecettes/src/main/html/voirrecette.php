@@ -20,13 +20,12 @@
             $nb_personnes = $obj['nb_personnes'];
             $introduction = $obj['introduction'];
             $description = $obj['description'];
-            $type = $obj['recetteType'];
 
             if($nb_personnes == 1) echo "<h1>$nom ($nb_personnes personne)</h1>";
 
             else echo "<h1>$nom ($nb_personnes personnes)</h1>";
 
-            echo "<center><h2>$introduction</h2></center>";
+            echo "<h2 style='text-align:center'>$introduction</h2>";
         ?>
     </body>
 </html>

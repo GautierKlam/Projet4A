@@ -3,8 +3,8 @@
 </html>
 
 <?php
-    $pseudo=$_SESSION['pseudo'];
     if(isset($_SESSION['pseudo'])){
+        $pseudo = $_SESSION['pseudo'];
         echo"<header>
             <div class='entete'>
                 <a id='accueil' href='accueil.php'>Page d'accueil</a>
@@ -13,6 +13,7 @@
             </div>
         </header>";
     }
+
     else{
         echo"<header>
             <div class='entete'>

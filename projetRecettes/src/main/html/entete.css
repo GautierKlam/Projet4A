@@ -1,12 +1,10 @@
-
-
 header{
-
     background-color: dimgrey;
     color: ghostwhite;
     padding-top: 10px;
     padding-bottom: 30px;
 }
+
 #connexion, #accueil{
     text-decoration:none;
     color : yellow;
