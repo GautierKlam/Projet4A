@@ -20,8 +20,8 @@ public class ProjetRecettesApplication {
     @Bean
     CommandLineRunner start(RecetteInterface recetteInterface, UtilisateurInterface utilisateurInterface){
         return args -> {
-            utilisateurInterface.save(new Utilisateur(1,"Orlabite","Jade","Le canard","6969","OKLM@gmail.fr",true,false));
-            utilisateurInterface.save(new Utilisateur(2,"Kulfor","Jean","Le pigeon","6969","OKLM2@gmail.fr",true,false));
+            utilisateurInterface.save(new Utilisateur(1,"Orlabite","Jade","Le canard","6969","OKLM@gmail.fr",false));
+            utilisateurInterface.save(new Utilisateur(2,"Kulfor","Jean","Le pigeon","6969","OKLM2@gmail.fr",true));
 
             recetteInterface.save(new Recette("Salade de pâtes",4,"Très bonne recette, idéale pour l'été !","- Faites cuire vos pâtes\n- Mélangez les pâtes refroidies avec le basilic, le jambon, les tomates cerises, la roquette et la mozzarella\n- Ajoutez de l'huile et du vinaigre, salez, poivrez",new ArrayList<Ingredient>(){{add(new Ingredient("Roquette","200g",recetteInterface.getById(1)));add(new Ingredient("Jambon de pays","4 tranches",recetteInterface.getById(1)));add(new Ingredient("Tomates cerises","500g",recetteInterface.getById(1)));add(new Ingredient("Mozzarella","100g",recetteInterface.getById(1)));add(new Ingredient("Basilic","Quelques feuilles",recetteInterface.getById(1)));}}, RecetteType.PLAT,new ArrayList<Avis>(){{add(new Avis(7,"Effectivement très frais !",recetteInterface.getById(1),utilisateurInterface.getById(1)));add(new Avis(10,"rien à redire c'etait parfait",recetteInterface.getById(1),utilisateurInterface.getById(2)));}}));
             recetteInterface.save(new Recette("Magret de canard",2,"Super","Description magret de canard",new ArrayList<Ingredient>(){{add(new Ingredient("Magret de canard","2",recetteInterface.getById(2)));}}, RecetteType.PLAT, new ArrayList<Avis>(){{add(new Avis(5,"Super recette, je recommande !",recetteInterface.getById(2),utilisateurInterface.getById(1)));}}));

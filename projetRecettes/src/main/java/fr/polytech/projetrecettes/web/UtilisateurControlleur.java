@@ -29,64 +29,64 @@ public class UtilisateurControlleur {
     }
 
     //Rechercher un utilisateur par son identifiant
-    @GetMapping("/utilisateurs/{identifiant}")
-    public Utilisateur getUtilisateur(@PathVariable(value = "identifiant")int identifiant){
+    @GetMapping("/utilisateurs/identifiant")
+    public Utilisateur getUtilisateur(@PathVariable int identifiant){
         return utilisateurInterface.findById(identifiant).get();
         //return utilisateurInterface.findById(identifiant).get().getNom();
     }
 
     //Mise à jour identifiant
-    @PutMapping("/{utilisateur}/{identifiant}")
+    @PutMapping("/{utilisateur}/identifiant")
     public Utilisateur saveId(@PathVariable Utilisateur utilisateur, @PathVariable int identifiant){
         utilisateur.setIdentifiant(identifiant);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour nom
-    @PutMapping("/{utilisateur}/{nom}")
+    @PutMapping("/{utilisateur}/nom")
     public Utilisateur saveNom(@PathVariable Utilisateur utilisateur,@PathVariable String nom){
         utilisateur.setNom(nom);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour prénom
-    @PutMapping("/{utilisateur}/{prenom}")
-    public Utilisateur savePrenom(@PathVariable Utilisateur utilisateur,@PathVariable("prenom")String prenom){
+    @PutMapping("/{utilisateur}/prenom")
+    public Utilisateur savePrenom(@PathVariable Utilisateur utilisateur,@PathVariable String prenom){
         utilisateur.setPrenom(prenom);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour pseudo
-    @PutMapping("/{utilisateur}/{pseudo}")
-    public Utilisateur savePseudo(@PathVariable Utilisateur utilisateur,@PathVariable("pseudo")String pseudo){
+    @PutMapping("/{utilisateur}/pseudo")
+    public Utilisateur savePseudo(@PathVariable Utilisateur utilisateur,@PathVariable String pseudo){
         utilisateur.setPseudo(pseudo);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour mdp
-    @PutMapping("/{utilisateur}/{mdp}")
+    @PutMapping("/{utilisateur}/mdp")
     public Utilisateur saveMdp(@PathVariable Utilisateur utilisateur,@PathVariable("mdp")String mdp) {
         utilisateur.setPseudo(mdp);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour mail
-    @PutMapping("/{utilisateur}/{mail}")
-    public Utilisateur saveMail(@PathVariable Utilisateur utilisateur,@PathVariable("mail")String mail){
+    @PutMapping("/{utilisateur}/mail")
+    public Utilisateur saveMail(@PathVariable Utilisateur utilisateur,@PathVariable String mail){
         utilisateur.setMail(mail);
         return utilisateurInterface.save(utilisateur);
     }
 
     //Mise à jour admin
-    @PutMapping("/{utilisateur}/{admin}")
-    public Utilisateur saveAdmin(@PathVariable Utilisateur utilisateur,@PathVariable("admin")boolean admin){
+    @PutMapping("/{utilisateur}/admin")
+    public Utilisateur saveAdmin(@PathVariable Utilisateur utilisateur,@PathVariable boolean admin){
         utilisateur.setAdmin(admin);
         return utilisateurInterface.save(utilisateur);
     }
 
     //suppression d'un utilisateur
-    @DeleteMapping("/utilisateurs/{identifiant}")
-    public void save(@PathVariable("identifiant")int identifiant){
+    @DeleteMapping("/utilisateurs/identifiant")
+    public void save(@PathVariable int identifiant){
         utilisateurInterface.deleteById(identifiant);
     }
 }
