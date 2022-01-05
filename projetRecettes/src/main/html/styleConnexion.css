@@ -7,17 +7,30 @@ body{
  }
 form{
     padding-top: 0%;
-    
     position:absolute;
     top:30%;
     left:40%;
-    width:325px;
-    height:130px;
     background-color:dimgrey;
-   color: gold;
-   border-radius: 20px;
-   text-align: center;
+    color: gold;
+    border-radius: 20px;
+    text-align: center;
 }
+
+#baniere{
+    width:100%;
+}
+
+#baniere_gauche{
+    width:auto;
+    float: left;
+    text-align:center;
+}
+
+#baniere_droite{
+    width:auto;
+    text-align:left;
+}
+
 input{
 
     border-top:none;
