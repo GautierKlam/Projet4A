@@ -5,7 +5,7 @@ header{
     padding-bottom: 30px;
 }
 
-#connexion, #accueil, #pseudo{
+#connexion, #accueil{
     text-decoration:none;
     color : yellow;
     padding-right : 20px;
