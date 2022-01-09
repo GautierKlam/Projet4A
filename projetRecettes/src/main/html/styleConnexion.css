@@ -6,6 +6,10 @@ body{
    
  }
 form{
+
+}
+
+#baniere{
     padding-top: 0%;
     position:absolute;
     top:30%;
@@ -16,10 +20,6 @@ form{
     text-align: center;
 }
 
-#baniere{
-    width:100%;
-}
-
 #baniere_gauche{
     width:auto;
     float: left;
@@ -28,7 +28,12 @@ form{
 
 #baniere_droite{
     width:auto;
+    float: left;
     text-align:left;
+}
+#btnValider{
+    position: relative;
+    float: left;
 }
 
 input{
