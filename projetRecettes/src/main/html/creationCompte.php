@@ -50,11 +50,14 @@
                     <p>
                         <input type="text", name="mail", value="<?php if (isset($_POST['mail'])){echo $_POST['mail'];} ?>">&nbsp;
                     </p>
+                    <div id=btnValider>
+                       <input type="submit" value="Créer votre compte" name="creationcompte" class="button">
+                    </div>
+                    <p>
+                        <label>&nbsp;</label>
+                    </p>
                 </div>
             </div>
-            <p>
-                <input type="submit" value="Créer votre compte" name="creationcompte" class="button">
-            </p>
             <?php
                 $page = file_get_contents("http://localhost:8888/projetrecettes/utilisateurs");
                 $obj = json_decode($page,true);
