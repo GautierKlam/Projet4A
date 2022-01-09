@@ -3,7 +3,7 @@
     <head>
         <?php include("connexion.php");?>
         <title>Accueil Recette</title>
-        <link rel="stylesheet" href="accueil.css" type="text/css">
+        <link rel="stylesheet" href="menu.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     </head>
 
@@ -11,12 +11,12 @@
 
     <body>
         <h1>Bienvenue sur notre site de recette collaboratif !</h1>
-        <h2 style='text-align:center'>Voici l'ensemble des recettes disponibles, cliquez sur le nom pour voir ses avis et sa description entière</h2>
+        <h2 class='centre'>Voici l'ensemble des recettes disponibles, cliquez sur le nom pour voir ses avis et sa description entière</h2>
       
-        <div style='text-align:center'>
+        <div class='centre'>
             <form method='GET'>
                 <input size='40%' type='search' name='recherche' placeholder='Rechercher une recette...' />
-                <input type='submit' value='Valider' />
+                <input type='submit' value='Valider'/>
             </form>
         </div>
 
@@ -42,7 +42,7 @@
                 $test = $obj['_embedded']['recettes'];
             }
 
-            if(count($test)==0) echo "<h4 style='text-align:center'>Aucun résultat pour la recherche : \"".$_GET['recherche']."\"</h4>";
+            if(count($test)==0) echo "<h4 class='centre'>Aucun résultat pour la recherche : \"".$_GET['recherche']."\"</h4>";
 
             else{
                 echo"<table>
