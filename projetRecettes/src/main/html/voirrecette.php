@@ -4,13 +4,14 @@
     <head>
         <?php include("connexion.php");?>
         <title>Accueil Recette</title>
-        <link rel="stylesheet" href="accueil.css" type="text/css">
+        <link rel="stylesheet" href="styleVoirRecette.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     </head>
 
     <?php include ('entete.php');?>
 
     <body>
+
         <?php
             $id = $_GET['id'];
             $page = file_get_contents("http://localhost:8888/projetrecettes/recettes/$id");
@@ -27,43 +28,54 @@
 
             else echo "<h1>$nom ($nb_personnes personnes)</h1>";
 
-            echo "<div style='text-align:center'>
-                <h2>$introduction</h2>
-                <h2>Ingrédients<hr width=10%></h2>";
+            echo "<div class='cote'>
+                <div class='voirRecette'>
+                    <div class='centre'>
+                        <h2>$introduction</h2>
+                        <h2>Ingrédients<hr class='barre'></h2>";
 
                 foreach($ingredients as $v){
                     $nom = $v['nom'];
                     $quantite = $v['quantite'];
-                    echo"<div width=60%>
-                        <h4>$nom : $quantite</h4>
-                    </div>";
+                    echo"<h4>
+                        <div class='total'>
+                            <div class='gauche'>
+                                $nom
+                            </div>
+                            <div class='droite'>
+                                $quantite
+                            </div>
+                        </div>
+                    </h4>";
                 }
 
-                echo "<br><h2>Préparation<hr width=10%></h2>";
+                echo "<br><h2>Préparation<hr class='barre'></h2>";
                 $desc = explode('<br>',$description);
                 $index=1;
 
+                echo "<div class='description'>";
                 foreach($desc as $v){
-                    echo "<p>";
-                    echo "<div class='cercle'>$index</div>$v";
+                    echo "<p class:'left'><div class='cercle'>$index</div>$v</p>";
                     $index+=1;
                 }
-                echo "<br><br><br>
+                echo "</div><br><br><br>
 
-                <br><h2>Avis<hr width=10%></h2>";
+                <br><h2>Avis<hr class='barre'></h2>";
                 foreach($avis as $v){
                     $note = $v['note'];
                     $commentaire = $v['commentaire'];
 
-                    echo "<div>";
+                    echo "<div class='avis'>";
                         for ($i = 1; $i <= 5; $i++) {
-                            if($i<=$note) echo "<img id='etoile_$i' src='etoile2.png' height=20px; width=20px; cursor=pointer;/>";
-                            else echo "<img id='etoile_$i' src='etoile.png' height=20px; width=20px; cursor=pointer;/>";
+                            if($i<=$note) echo "<img src='etoile2.png' class='etoile'/>";
+                            else echo "<img src='etoile.png' class='etoile'/>";
                     }
                     echo "<p>$commentaire</p>
                     </div>";
                 }
              echo "</div>";
         ?>
+            </div>
+        </div>
     </body>
 </html>

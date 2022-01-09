@@ -3,7 +3,7 @@
     <head>
         <?php include("connexion.php");?>
         <title>Votre compte</title>
-        <link rel="stylesheet" href="accueil.css" type="text/css">
+        <link rel="stylesheet" href="menu.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     </head>
     <?php include ('entete.php');?>
@@ -37,7 +37,7 @@
     }
     echo "</table></br>";
 
-    echo "<div style='text-align:center;'> <a href='ajouter.php' > <img width='50px' title='Ajouter une recette' src='add.png'></a></div>";
+    echo "<div class='centre'> <a href='ajouter.php' > <img width='50px' title='Ajouter une recette' src='add.png'></a></div>";
 
 
 
