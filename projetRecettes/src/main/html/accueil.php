@@ -21,20 +21,34 @@
         </div>
 
         <?php
-            if(isset($_GET['recherche'])) $page = file_get_contents('http://localhost:8888/projetrecettes/recettes/search/findByNomContaining?nom='.$_GET['recherche']);
+            if(isset($_GET['recherche'])){
+                $recherche = $_GET['recherche'];
+                $recherches = explode(' ',$recherche);
+                $test=[];
+                foreach($recherches as $v){
+                    if(strlen($v)>2){
+                        $page = file_get_contents('http://localhost:8888/projetrecettes/recettes/search/findByNomContaining?nom='.$v);
+                        $obj = json_decode($page,true);
+                        foreach($obj['_embedded']['recettes'] as $u){
+                            if(!in_array($u,$test)) array_push($test,$u);
+                        }
+                    }
+                }
+            }
 
-            else $page = file_get_contents('http://localhost:8888/projetrecettes/recettes');
+            else{
+                $page = file_get_contents('http://localhost:8888/projetrecettes/recettes');
+                $obj = json_decode($page,true);
+                $test = $obj['_embedded']['recettes'];
+            }
 
-            $obj = json_decode($page,true);
-            $test = $obj['_embedded'];
+            if(count($test)==0) echo "<h4 style='text-align:center'>Aucun résultat pour la recherche : \"".$_GET['recherche']."\"</h4>";
 
-            if(count($test['recettes'])==0) echo "<p style='text-align:center'>Aucun résultat pour la recherche : ".$_GET['recherche']."</p>";
-            
             else{
                 echo"<table>
                 <caption>Liste des recettes (nom, petite description et type)</caption>";
 
-                foreach ($test['recettes'] as $v) {
+                foreach ($test as $v) {
                     $id = substr($v['_links']['self']['href'], -1);
                     $nom = $v['nom'];
                     $intr = $v['introduction'];
