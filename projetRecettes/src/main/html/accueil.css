@@ -52,3 +52,15 @@ a{
 a:hover{
     text-decoration :  black wavy underline;
 }
+
+.cercle{
+    margin:10px;
+    width:25px;
+    background:#181818;
+    color:white;
+    font-size: 18px;
+    height:25px;
+    border-radius:25px;
+    line-height: 25px;
+    display:inline;
+}

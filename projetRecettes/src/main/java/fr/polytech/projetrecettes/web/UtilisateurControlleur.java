@@ -25,7 +25,6 @@ public class UtilisateurControlleur {
     //ajouter un utilisateur
     @PostMapping("/saveUtilisateur")
     public Utilisateur saveUtilisateur(@ModelAttribute Utilisateur utilisateur){
-        System.out.println(utilisateur);
         return utilisateurInterface.save(utilisateur);
 
     }

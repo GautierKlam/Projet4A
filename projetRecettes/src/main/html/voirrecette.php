@@ -5,7 +5,6 @@
         <?php include("connexion.php");?>
         <title>Accueil Recette</title>
         <link rel="stylesheet" href="accueil.css" type="text/css">
-        <link rel="stylesheet" href="styleCercle.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     </head>
 
@@ -43,7 +42,9 @@
                 echo "<br><h2>Préparation<hr width=10%></h2>";
                 $desc = explode('<br>',$description);
                 $index=1;
+
                 foreach($desc as $v){
+                    echo "<p>";
                     echo "<div class='cercle'>$index</div>$v";
                     $index+=1;
                 }

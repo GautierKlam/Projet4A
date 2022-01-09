@@ -88,7 +88,6 @@
                     {
                         $validation = false;
                         $message = 'Veuillez remplir tout les champs !';
-                        echo $page;
                     }
 
                     if($validation==true)
