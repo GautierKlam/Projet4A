@@ -23,9 +23,11 @@ public class UtilisateurControlleur {
     }
 
     //ajouter un utilisateur
-    @PostMapping(path = "/utilisateur")
-    public Utilisateur save(Utilisateur utilisateur){
+    @PostMapping("/saveUtilisateur")
+    public Utilisateur saveUtilisateur(@ModelAttribute Utilisateur utilisateur){
+        System.out.println(utilisateur);
         return utilisateurInterface.save(utilisateur);
+
     }
 
     //Rechercher un utilisateur par son identifiant
