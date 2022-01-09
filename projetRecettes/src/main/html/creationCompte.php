@@ -1,6 +1,12 @@
+<!DOCTYPE html>
 <html>
+    <head>
+        <?php include("connexion.php");?>
+        <title>Création de compte</title>
+        <link rel="stylesheet" href="styleConnexion.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
     <?php include("entete.php");?>
-    <link rel="stylesheet" href="styleConnexion.css" type="text/css">
 	<body>
 	    <title>Inscription</title>
 		<form method="post">
@@ -36,7 +42,7 @@
                         <input type="text" name="pseudo"  value="<?php if (isset($_POST['pseudo'])){echo $_POST['pseudo'];} ?>">&nbsp;
                     </p>
                     <p>
-                        <input type="password", name="mdp1", value="">&nbsp;
+                        <input type="password", name="mdp", value="">&nbsp;
                     </p>
                     <p>
                         <input type="password", name="mdp2", value="">&nbsp;
@@ -47,7 +53,7 @@
                 </div>
             </div>
             <p>
-                <input type="submit" value="Créer votre compte" name="creationcompte">
+                <input type="submit" value="Créer votre compte" name="creationcompte" class="button">
             </p>
             <?php
                 $page = file_get_contents("http://localhost:8888/projetrecettes/utilisateurs");
@@ -71,21 +77,31 @@
                             $message = 'Cette adresse mail est déjà utilisée';
                             $validation = false;
                         }
-                        else if ($_POST['mdp1']!= $_POST['mdp2'])
+                        else if ($_POST['mdp']!= $_POST['mdp2'])
                         {
                             $message = 'Les mots de passe sont différents';
                             $validation = false;
                         }
                     }
-                    if(empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['pseudo']) || empty($_POST['mdp1']) || empty($_POST['mdp2']) || empty($_POST['mail']) )
+
+                    if(empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['pseudo']) || empty($_POST['mdp']) || empty($_POST['mdp2']) || empty($_POST['mail']) )
                     {
                         $validation = false;
                         $message = 'Veuillez remplir tout les champs !';
+                        echo $page;
                     }
+
                     if($validation==true)
                     {
+                        $ch = curl_init();
+                        curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/saveUtilisateur");
+                        curl_setopt($ch, CURLOPT_POST, 1);
+                        $datas = array("nom"=>$_POST['nom'], "prenom"=>$_POST['prenom'], "pseudo"=>$_POST['pseudo'],"mdp"=>$_POST['mdp'],"mail"=>$_POST['mail']);
+                        curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
 
-
+                        $result = curl_exec($ch);
+                        print_r($result);
+                        curl_close($ch);
                         header("Location: pageConnexion.php");
                     }
                     else
