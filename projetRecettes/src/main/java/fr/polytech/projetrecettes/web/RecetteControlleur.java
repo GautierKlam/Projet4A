@@ -58,7 +58,9 @@ public class RecetteControlleur {
 
     //ajouter un avis
     @PostMapping(path = "/saveAvis")
-    public Recette save(@PathVariable Recette recette, Avis avis){
+    public Recette save(@PathVariable int id_recette, Avis avis){
+        Recette recette = recetteInterface.getById(id_recette);
+        avis.setRecette(recette);
         recette.getAvis().add(avis);
         return recetteInterface.save(recette);
     }
@@ -68,44 +70,6 @@ public class RecetteControlleur {
     public Recette getRecette(@PathVariable("identifiant")int id){
         return recetteInterface.findById(id).get();
     }
-
-    //chercher une recette à l'aide de son nom
-    /*@GetMapping("/recettes/{nom}")
-    public ArrayList<Recette> getRecette(@PathVariable String nom){
-        ArrayList<Recette> resultat = new ArrayList<>();
-        for(Recette recette : recetteList()){
-            if(recette.getNom().contains(nom)) resultat.add(recette);
-        }
-        return resultat;
-    }*/
-
-    /*chercher une recette qui contiennent les ingrédients demandés
-    @GetMapping("/recettes/{ingredients}")
-    public ArrayList<Recette> getRecette(@PathVariable String[] ingredients){
-        ArrayList<Recette> resultat = new ArrayList<>();
-        boolean compatible = true;
-        for(Recette recette : recetteList()){
-            for(String ingredient : ingredients){
-                if (!recette.getIngredients().contains(ingredient)) {
-                    compatible = false;
-                    break;
-                }
-            }
-            if(compatible)resultat.add(recette);
-            else compatible = true;
-        }
-        return resultat;
-    }*/
-
-    //chercher une recette correspond au type demandé (entree, plat...)
-    /*@GetMapping("/recettes/{type}")
-    public ArrayList<Recette> getRecette(@PathVariable RecetteType type){
-        ArrayList<Recette> resultat = new ArrayList<>();
-        for(Recette recette : recetteList()) {
-            if (recette.getRecetteType() == type) resultat.add(recette);
-        }
-        return resultat;
-    }*/
 
     //Mettre à jour l'identifiant d'une recette
     @PutMapping("/recettes/{id}/identifiant")
