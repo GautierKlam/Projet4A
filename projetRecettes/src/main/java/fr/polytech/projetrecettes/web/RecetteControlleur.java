@@ -54,7 +54,9 @@ public class RecetteControlleur {
 
     //ajouter un ingrédient à une recette
     @PostMapping("/saveIngredient")
-    public Recette saveIngredient(@PathVariable Recette recette, Ingredient ingredient){
+    public Recette saveIngredient(int id_recette, Ingredient ingredient){
+        Recette recette = recetteInterface.getById(id_recette);
+        ingredient.setRecette(recette);
         recette.getIngredients().add(ingredient);
         return recetteInterface.save(recette);
     }
@@ -62,7 +64,6 @@ public class RecetteControlleur {
     //ajouter un avis
     @PostMapping(path = "/saveAvis")
     public Recette saveAvis(int id_recette, Avis avis, int id_utilisateur){
-        System.out.println(id_utilisateur);
         Recette recette = recetteInterface.getById(id_recette);
         Utilisateur utilisateur = utilisateurInterface.getById(id_utilisateur);
         avis.setUtilisateur(utilisateur);

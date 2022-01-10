@@ -79,9 +79,7 @@
                         $result = curl_exec($ch);
                         curl_close($ch);
 
-                        header("Location: pageConnexion.php");
-    //  MARCHE PO //
-                        /*$page = file_get_contents('http://localhost:8888/projetrecettes/recettes');
+                        $page = file_get_contents('http://localhost:8888/projetrecettes/recettes');
                         $obj = json_decode($page,true);
                         $test = $obj['_embedded']['recettes'];
                         foreach ($test as $v) {
@@ -91,13 +89,16 @@
                                 $id = substr($v['_links']['self']['href'], -1);
                             }
                         }
+
                         $ch = curl_init();
                         curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/saveIngredient");
                         curl_setopt($ch, CURLOPT_POST, 1);
-                        $datas = array("nom"=>$_POST['nomIngredient'], "quantite"=>$_POST['quantiteIngredient']);
+                        $datas = array("nom"=>$_POST['nomIngredient'], "quantite"=>$_POST['quantiteIngredient'],"id_recette"=>$id);
                         curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
                         $result = curl_exec($ch);
-                        curl_close($ch);*/
+                        curl_close($ch);
+
+                        header("Location: pageConnexion.php");
                     }
                     else echo $message;
                 }
