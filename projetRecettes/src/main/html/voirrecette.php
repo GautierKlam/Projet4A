@@ -3,7 +3,7 @@
 <html>
     <head>
         <?php include("connexion.php");?>
-        <title>Accueil Recette</title>
+        <title>Recette</title>
         <link rel="stylesheet" href="styleVoirRecette.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     </head>
@@ -11,7 +11,6 @@
     <?php include ('entete.php');?>
 
     <body>
-
         <?php
         $id = $_GET['id'];
         $page = file_get_contents("http://localhost:8888/projetrecettes/recettes/$id");
@@ -70,19 +69,62 @@
                                 if($i<=$note) echo "<img src='etoile2.png' class='etoile'/>";
                                 else echo "<img src='etoile.png' class='etoile'/>";
                             }
-                            echo "<p>$commentaire</p>
+                            echo "<strong>&emsp;";
+                            switch($note){
+                                case 1 :
+                                    echo "Mauvais...";
+                                    break;
+                                case 2 :
+                                    echo "Pas terrible...";
+                                    break;
+                                case 3 :
+                                    echo "Moyen";
+                                    break;
+                                case 4 :
+                                    echo "Super !";
+                                    break;
+                                case 5 :
+                                    echo "Parfait !";
+                                    break;
+                            }
+                            echo "</strong>
+                            <p>$commentaire</p>
                         </div>";
                     }
-                    echo "<br><form method='GET'>
-                        <img src='etoile.png' class='etoile-avis'/>
-                        <img src='etoile.png' class='etoile-avis'/>
-                        <img src='etoile.png' class='etoile-avis'/>
-                        <img src='etoile.png' class='etoile-avis'/>
-                        <img src='etoile.png' class='etoile-avis'/>
-                        <input size='50%' type='search' name='commentaire' placeholder='Ajouter un commentaire...' />
-                        <input type='submit' value='Soumettre'/>
-                    </form>
-                </div><br><br><br>";?>
+
+                    if(!isset($_SESSION['pseudo'])) echo "<br><h4>Veuillez vous connecter pour poster un avis</h4>";
+                    else{
+                        echo "<br><h2>Poster un avis<hr class='barre'></h2>
+                        <form method='post' action='voirrecette.php?id=$id'>";?>
+                            <div>
+                                <div class='total'>
+                                    <p class='centre'><input type="text", name="note", placeholder="Note (Entre 1 et 5)", value="<?php if (isset($_POST['note'])){echo $_POST['note'];} ?>"></p>
+                                    <p><textarea class='total' rows="5", maxlength="250", placeholder="Rédigez votre commentaire...", name="commentaire", value="<?php if (isset($_POST['commentaire'])){echo $_POST['commentaire'];} ?>"></textarea></p>
+                                </div>
+                                <input type="submit" value="Poster l'avis" name="creationavis">
+                            </div>
+                            <?php
+                            if(isset($_POST['creationavis'])){     
+                                $note = $_POST['note'];
+                                $commentaire = $_POST['commentaire'];               
+                                if(empty($note) || empty($commentaire))echo '<br>Veuillez remplir tout les champs !';
+                                else if(!is_numeric($note))echo "<br>Veuillez entrer un nombre !";
+                                else if($note<1 || $note>5) echo "<br>Veuillez entrer un nombre entre 1 et 5 !";
+                                else{
+                                    /*$ch = curl_init();
+                                    curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/saveAvis");
+                                    curl_setopt($ch, CURLOPT_POST, 1);
+                                    $datas = array("commentaire"=>$commentaire, "note"=>(int)$note, "id_recette"=>$_GET['id'],"id_utilisateur"=>$_SESSION['identifiant']);
+                                    curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
+                                    $result = curl_exec($ch);
+                                    print_r($result);
+                                    curl_close($ch);*/
+                                    //header("Location: voirrecette.php?id=".$_GET['id']);
+                                }
+                            }
+		                echo "</form>";
+                    }
+                echo "</div><br><br><br>";?>
             </div>
         </div>
     </body>

@@ -93,12 +93,12 @@
                         $message = 'Veuillez remplir tout les champs !';
                     }
 
-                    if($validation==true)
+                    if($validation)
                     {
                         $ch = curl_init();
                         curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/saveUtilisateur");
                         curl_setopt($ch, CURLOPT_POST, 1);
-                        $datas = array("nom"=>$_POST['nom'], "prenom"=>$_POST['prenom'], "pseudo"=>$_POST['pseudo'],"mdp"=>$_POST['mdp'],"mail"=>$_POST['mail']);
+                        $datas = array("nom"=>$_POST['nom'], "prenom"=>$_POST['prenom'], "pseudo"=>$_POST['pseudo'],"mdp"=>password_hash($_POST['mdp'],PASSWORD_DEFAULT),"mail"=>$_POST['mail']);
                         curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
 
                         $result = curl_exec($ch);

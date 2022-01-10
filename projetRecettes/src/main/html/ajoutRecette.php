@@ -58,7 +58,7 @@
                     if(empty($_POST['nom']) || empty($_POST['nb_personnes']) || empty($_POST['introduction']) || empty($_POST['description']) || empty($_POST['recetteType']) || empty($_POST['nomIngredient']) || empty($_POST['quantiteIngredient']))
                     {
                         $validation = false;
-                        $message = 'Veuillez remplir tout les champs !';
+                        $message = 'Veuillez remplir tous les champs !';
                     }
 
                     if($validation==true)

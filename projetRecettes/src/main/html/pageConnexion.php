@@ -13,7 +13,7 @@
 	    <title>Connexion</title>
 		<form method="post">
 		    <p>
-			    <label>Identifiant ou e-mail :</label>
+			    <label>Pseudo ou e-mail :</label>
 			    <input type="text" name="pseudo"  value="">
 			</p>
 
@@ -32,15 +32,13 @@
             $obj = json_decode($page,true);
             $test = $obj['_embedded'];
 
-            if(isset($_POST['connecter']))
-            {
-                foreach ($test['utilisateurs'] as $v)
-                {
+            if(isset($_POST['connecter'])){
+                foreach ($test['utilisateurs'] as $v){
                     $pseudo = $v['pseudo'];
+                    $mail = $v['mail'];
                     $mdp = $v['mdp'];
                     $id = substr($v['_links']['self']['href'], -1);
-                    if ($_POST['pseudo']==$pseudo AND $_POST['mdp']==$mdp)
-                    {
+                    if (($_POST['pseudo']==$pseudo || $_POST['pseudo']==$mail) && password_verify($_POST['mdp'],$mdp)){
                         $_SESSION['pseudo'] = $pseudo;
                         $_SESSION['identifiant'] = $id;
                         header("Location: accueil.php");

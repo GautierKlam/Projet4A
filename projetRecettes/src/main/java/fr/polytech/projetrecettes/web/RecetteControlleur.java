@@ -57,7 +57,7 @@ public class RecetteControlleur {
     }
 
     //ajouter un avis
-    @PostMapping(path = "/{recette}/avis")
+    @PostMapping(path = "/saveAvis")
     public Recette save(@PathVariable Recette recette, Avis avis){
         recette.getAvis().add(avis);
         return recetteInterface.save(recette);
