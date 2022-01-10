@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php 
+    session_start(); 
+    if(!isset($_SESSION['pseudo'])){
+        header('Location: accueil.php');
+        exit;
+    }
+?>
+
 <html>
     <head>
         <?php include("connexion.php");?>
@@ -31,11 +38,11 @@
                     $intr=$v['introduction'];
                     $nom=$v['nom'];
                     $typerecette=$v['recetteType'];
-                    echo "<td><a>$nom</a></td><td>$intr</td><td>$typerecette</td><td><a href='modif.php'><img title='Modifier la recette' src='modifier.png' width='20px' ></a></td><td><a href='supprimer.php'><img title='Supprimer la recette' src='delete.png' width='20px' ></a></td></tr>";
+                    echo "<td><a href='voirrecette.php?id=$id'>$nom</a></td><td>$intr</td><td>$typerecette</td><td><a href='modif.php'><img title='Modifier la recette' src='modifier.png' width='20px' ></a></td><td><a href='deleteRecette.php?id=$id'><img title='Supprimer la recette' src='delete.png' width='20px' ></a></td></tr>";
                 }
             }
             echo "</table></br>
-            <div class='centre'> <a href='ajouter.php' > <img width='50px' title='Ajouter une recette' src='add.png'></a></div>";
+            <div class='centre'> <a href='ajoutRecette.php' > <img width='50px' title='Ajouter une recette' src='add.png'></a></div>";
         }
         ?>
     </body>

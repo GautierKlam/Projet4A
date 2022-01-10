@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php 
+    session_start(); 
+    if(isset($_SESSION['pseudo'])){
+        header('Location: accueil.php');
+        exit;
+    }
+?>
 <html>
     <head>
         <?php include("connexion.php");?>

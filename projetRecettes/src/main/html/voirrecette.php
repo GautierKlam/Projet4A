@@ -22,6 +22,7 @@
         $description = $obj['description'];
         $ingredients = $obj['ingredients'];
         $avis = $obj['avis'];
+        $publication = false;
 
         if($nb_personnes == 1) echo "<h1>$nom ($nb_personnes personne)</h1>";
 
@@ -64,7 +65,8 @@
                         $note = $v['note'];
                         $commentaire = $v['commentaire'];
                         $id_user = substr($v['_links']['utilisateur']['href'], -1);
-                        $user = $_SESSION['identifiant'];
+                        if(isset($_SESSION['identifiant']))$user = $_SESSION['identifiant'];
+                        
                     
                         echo "<div class='avis'>";
                             for ($i = 1; $i <= 5; $i++) {
@@ -89,19 +91,22 @@
                                     echo "Parfait !";
                                     break;
                             }
-                            if($id_user == $user) echo "&emsp;<a href='modif.php'><img title='Modifier l'avis' src='modifier.png' width='15px' ></a>";
+                            if(isset($_SESSION['identifiant']) && $id_user == $user){
+                                $publication = true;
+                                echo "&emsp;<a><img title='Votre avis' src='etoile2.png' width='15px' ></a>";
+                            } 
                             echo "</strong>
                             <p>$commentaire</p>
                         </div>";
                     }
 
                     if(!isset($_SESSION['pseudo'])) echo "<br><h4>Veuillez vous connecter pour poster un avis</h4>";
-                    else{
+                    else if(!$publication){
                         echo "<br><h2>Poster un avis<hr class='barre'></h2>
                         <form method='post' action='voirrecette.php?id=$id'>";?>
                             <div>
                                 <div class='total'>
-                                    <p class='centre'><input type="text", name="note", placeholder="Note (Entre 1 et 5)", value="<?php if (isset($_POST['note'])){echo $_POST['note'];} ?>"></p>
+                                    <p class='centre'><input type="number", min='1', max='5', name="note", placeholder="Note (Entre 1 et 5)", value="<?php if (isset($_POST['note'])){echo $_POST['note'];} ?>"></p>
                                     <p><textarea class='total' rows="5", maxlength="250", placeholder="Rédigez votre commentaire...", name="commentaire", value="<?php if (isset($_POST['commentaire'])){echo $_POST['commentaire'];} ?>"></textarea></p>
                                 </div>
                                 <input type="submit" value="Poster l'avis" name="creationavis">
@@ -111,8 +116,6 @@
                                 $note = $_POST['note'];
                                 $commentaire = $_POST['commentaire'];               
                                 if(empty($note) || empty($commentaire))echo '<br>Veuillez remplir tout les champs !';
-                                else if(!is_numeric($note))echo "<br>Veuillez entrer un nombre !";
-                                else if($note<1 || $note>5) echo "<br>Veuillez entrer un nombre entre 1 et 5 !";
                                 else{
                                     /*$ch = curl_init();
                                     curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/saveAvis");
