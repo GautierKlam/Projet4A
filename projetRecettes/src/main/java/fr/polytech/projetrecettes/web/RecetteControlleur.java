@@ -44,8 +44,8 @@ public class RecetteControlleur {
     }
 
     //ajouter une recette
-    @PostMapping(path = "/recettes")
-    public Recette save(Recette recette){
+    @PostMapping("/saveRecette")
+    public Recette saveRecette(Recette recette){
         return recetteInterface.save(recette);
     }
 

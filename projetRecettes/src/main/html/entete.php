@@ -8,6 +8,7 @@
         echo"<header>
             <div class='entete'>
                 <a id='accueil' href='accueil.php'>Page d'accueil</a>
+                <a id='ajoutRecette' href='ajoutRecette.php'> Ajouter une recette</a>
                 <a id='maPage' href='maPage.php'>".$pseudo."</a>
                 <a id='connexion' href='pageDeconnexion.php'>Déconnexion</a>
             </div>

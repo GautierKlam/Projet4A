@@ -5,13 +5,21 @@ header{
     padding-bottom: 30px;
 }
 
-#connexion, #accueil{
+#connexion, #accueil, #maPage{
     text-decoration:none;
     color : yellow;
     padding-right : 20px;
+    float:right;
+}
+#ajoutRecette:hover, #connexion:hover, #accueil:hover, #maPage:hover {
+    color : gold;
+}
+
+#ajoutRecette{
+    text-decoration:none;
+    color : yellow;
+    padding-left : 10px;
 }
 
 .entete{
-    float:right;
-    padding-bottom: 20px;
 }
