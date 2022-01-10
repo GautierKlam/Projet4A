@@ -1,10 +1,8 @@
 package fr.polytech.projetrecettes.web;
 
 import fr.polytech.projetrecettes.dao.RecetteInterface;
-import fr.polytech.projetrecettes.entities.Avis;
-import fr.polytech.projetrecettes.entities.Ingredient;
-import fr.polytech.projetrecettes.entities.Recette;
-import fr.polytech.projetrecettes.entities.RecetteType;
+import fr.polytech.projetrecettes.dao.UtilisateurInterface;
+import fr.polytech.projetrecettes.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
@@ -14,6 +12,11 @@ import java.util.List;
 public class RecetteControlleur {
     @Autowired
     private RecetteInterface recetteInterface;
+    private UtilisateurInterface utilisateurInterface;
+
+    public RecetteControlleur(UtilisateurInterface utilisateurInterface) {
+        this.utilisateurInterface = utilisateurInterface;
+    }
 
     //renvoie la liste des recettes
     @GetMapping(value = "/recettes")
@@ -58,8 +61,11 @@ public class RecetteControlleur {
 
     //ajouter un avis
     @PostMapping(path = "/saveAvis")
-    public Recette save(@PathVariable int id_recette, Avis avis){
+    public Recette saveAvis(int id_recette, Avis avis, int id_utilisateur){
+        System.out.println(id_utilisateur);
         Recette recette = recetteInterface.getById(id_recette);
+        Utilisateur utilisateur = utilisateurInterface.getById(id_utilisateur);
+        avis.setUtilisateur(utilisateur);
         avis.setRecette(recette);
         recette.getAvis().add(avis);
         return recetteInterface.save(recette);
@@ -171,8 +177,8 @@ public class RecetteControlleur {
     }
 
     //suppression d'une recette
-    @PostMapping("/deleteRecette")
-    public void delete(int id){
+    @DeleteMapping("/recettes/{identifiant}")
+    public void delete(@PathVariable("identifiant")int id){
         recetteInterface.deleteById(id);
     }
 }

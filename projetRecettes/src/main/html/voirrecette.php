@@ -131,14 +131,14 @@
                                 if(empty($note) || empty($commentaire))echo '<br>Veuillez remplir tous les champs !';
 
                                 else{
-                                    /*$ch = curl_init();
+                                    $ch = curl_init();
                                     curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/saveAvis");
                                     curl_setopt($ch, CURLOPT_POST, 1);
-                                    $datas = array("commentaire"=>$commentaire, "note"=>(int)$note, "id_recette"=>$_GET['id'],"id_utilisateur"=>$user);
+                                    $datas = array("id_recette"=>$_GET['id'],"commentaire"=>$commentaire, "note"=>(int)$note,"id_utilisateur"=>$user);
                                     curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
                                     $result = curl_exec($ch);
                                     print_r($result);
-                                    curl_close($ch);*/
+                                    curl_close($ch);
                                 }
                             }
 		                echo "</form>";

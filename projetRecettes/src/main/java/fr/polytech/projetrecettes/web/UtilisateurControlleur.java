@@ -31,9 +31,8 @@ public class UtilisateurControlleur {
 
     //Rechercher un utilisateur par son identifiant
     @GetMapping("/utilisateurs/identifiant")
-    public Utilisateur getUtilisateur(@PathVariable int identifiant){
-        return utilisateurInterface.findById(identifiant).get();
-        //return utilisateurInterface.findById(identifiant).get().getNom();
+    public Utilisateur getUtilisateur(@PathVariable("identifiant")int id){
+        return utilisateurInterface.findById(id).get();
     }
 
     //Mise à jour identifiant
