@@ -61,7 +61,9 @@
                     echo "</div><br><br><br>
 
                     <br><h2>Avis<hr class='barre'></h2>";
+                    $index=0;
                     foreach($avis as $v){
+                        $index++;
                         $note = $v['note'];
                         $commentaire = $v['commentaire'];
                         $id_user = substr($v['_links']['utilisateur']['href'], -1);
@@ -98,7 +100,7 @@
                             if(isset($_SESSION['identifiant']) && $id_user == $user){
                                 $publication = true;
                                 echo "&emsp;<a href='voirrecette.php?id=$id&modif=1'><img title='Modifier votre avis' src='modifier.png' width='15px'></a>
-                                &emsp;<a href='deleteAvis?id=$id&id_avis='><img title='Supprimer votre avis' src='delete.png' width='15px'></a>";
+                                &emsp;<a href='deleteAvis?id=$id&id_avis=$index'><img title='Supprimer votre avis' src='delete.png' width='15px'></a>";
                                 $user_comm = $commentaire;
                                 $user_note = $note;
                             } 
@@ -143,14 +145,14 @@
                     }
 
                     else if(isset($_GET['modif'])){
-                        echo "<br><h2>Poster un avis<hr class='barre'></h2>
+                        echo "<br><h2>Modifier votre avis<hr class='barre'></h2>
                         <form method='post' action='voirrecette.php?id=$id'>
                             <div>
                                 <div class='total'>
                                     <p class='centre'><input type='number', min='1', max='5', name='note', placeholder='Note (Entre 1 et 5)'', value=$user_note></p>
                                     <p><textarea class='total' rows='5', maxlength='250', placeholder='Rédigez votre commentaire...', name='commentaire'>$user_comm</textarea></p>
                                 </div>
-                                <input type='submit' value='Publier' name='creationavis'>
+                                <input href='voirrecette.php?id=$id' type='submit' value='Annuler' name='annuler'> <input type='submit' value='Publier' name='creationavis'>
                             </div>";
 
                             if(isset($_POST['creationavis'])){     

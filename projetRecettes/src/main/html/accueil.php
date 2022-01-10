@@ -25,7 +25,7 @@
 
     <body>
         <h1>Bienvenue sur notre site de recette collaboratif !</h1>
-        <h2 class='centre'>Voici l'ensemble des recettes disponibles, cliquez sur le nom pour voir ses avis et sa description entière</h2>
+        <h2 class='centre'>Voici l'ensemble des recettes disponibles, cliquez sur leur nom pour les afficher en entier</h2>
 
         <div class='centre'>
             <form method='GET'>
