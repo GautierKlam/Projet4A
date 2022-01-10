@@ -63,38 +63,31 @@
                 $obj = json_decode($page,true);
                 $test = $obj['_embedded'];
 
-                if(isset($_POST['creationcompte']))
-                {
+                if(isset($_POST['creationcompte'])){
                     $validation = true;
-                    foreach ($test['utilisateurs'] as $v)
-                    {
+                    foreach ($test['utilisateurs'] as $v){
                         $pseudo = $v['pseudo'];
                         $mail = $v['mail'];
-                        if ($_POST['pseudo']==$pseudo)
-                        {
+                        if ($_POST['pseudo']==$pseudo){
                             $message = 'Ce pseudo est déjà utilisé';
                             $validation = false;
                         }
-                        else if ($_POST['mail']==$mail)
-                        {
+                        else if ($_POST['mail']==$mail){
                             $message = 'Cette adresse mail est déjà utilisée';
                             $validation = false;
                         }
-                        else if ($_POST['mdp']!= $_POST['mdp2'])
-                        {
+                        else if ($_POST['mdp']!= $_POST['mdp2']){
                             $message = 'Les mots de passe sont différents';
                             $validation = false;
                         }
                     }
 
-                    if(empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['pseudo']) || empty($_POST['mdp']) || empty($_POST['mdp2']) || empty($_POST['mail']) )
-                    {
+                    if(empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['pseudo']) || empty($_POST['mdp']) || empty($_POST['mdp2']) || empty($_POST['mail']) ){
                         $validation = false;
                         $message = 'Veuillez remplir tout les champs !';
                     }
 
-                    if($validation)
-                    {
+                    if($validation){
                         $ch = curl_init();
                         curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/saveUtilisateur");
                         curl_setopt($ch, CURLOPT_POST, 1);
@@ -106,10 +99,7 @@
                         curl_close($ch);
                         header("Location: pageConnexion.php");
                     }
-                    else
-                    {
-                        echo $message;
-                    }
+                    else echo $message;
                 }
             ?>
 		</form>
