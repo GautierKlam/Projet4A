@@ -1,7 +1,21 @@
 <?php session_start(); ?>
 <html>
     <head>
-        <?php include("connexion.php");?>
+        <?php include("connexion.php");
+        $admin=false;
+        if(isset($_SESSION['pseudo'])){
+            $pseudo=$_SESSION['pseudo'];
+            $page1 = file_get_contents('http://localhost:8888/projetrecettes/utilisateurs');
+            $obj1 = json_decode($page1,true);
+            $test1 = $obj1['_embedded'];
+            foreach ($test1['utilisateurs'] as $m) {
+                if ($pseudo==$m['pseudo']){
+                    if ($m['admin']==true) $admin=true;
+                    else $admin=false;
+                }
+            }
+        }
+        ?>
         <title>Accueil Recette</title>
         <link rel="stylesheet" href="menu.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,10 +26,10 @@
     <body>
         <h1>Bienvenue sur notre site de recette collaboratif !</h1>
         <h2 class='centre'>Voici l'ensemble des recettes disponibles, cliquez sur le nom pour voir ses avis et sa description entière</h2>
-      
+
         <div class='centre'>
             <form method='GET'>
-                <input size='40%' type='search' name='recherche' placeholder='Rechercher une recette...' />
+                <input size='40%' type='search' name='recherche' placeholder='Rechercher une recette...'/>
                 <input type='submit' value='Valider'/>
             </form>
         </div>
@@ -42,7 +56,7 @@
                 $test = $obj['_embedded']['recettes'];
             }
 
-            if(count($test)==0) echo "<h4 class='centre'>Aucun résultat pour la recherche : \"".$_GET['recherche']."\"</h4>";
+            if(count($test)==0) echo "<h4 class='centre'>Aucun résultat pour la recherche : \"$recherche\"</h4>";
 
             else{
                 echo"<table>
@@ -53,8 +67,10 @@
                     $nom = $v['nom'];
                     $intr = $v['introduction'];
                     $typerecette = $v['recetteType'];
-                    echo"<tr><td><a href='voirrecette.php?id=$id'>".$nom."</a></td><td>".$intr."</td><td>".$typerecette."</td></tr>";
-                }  
+                    if ($admin==true) $phrase="<td><a href='modif.php'><img title='Modifier la recette' src='modifier.png' width='20px' ></a></td><td><a href='supprimer.php'><img title='Supprimer la recette' src='delete.png' width='20px' ></a></td>";
+                    else $phrase="";
+                    echo"<tr><td><a href='voirrecette.php?id=$id'>$nom</td><td>$intr</td><td>$typerecette</td>$phrase</tr>";
+                }
                 echo "</table>";
             }
         ?>
