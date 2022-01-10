@@ -63,6 +63,8 @@
                     foreach($avis as $v){
                         $note = $v['note'];
                         $commentaire = $v['commentaire'];
+                        $id_user = substr($v['_links']['utilisateur']['href'], -1);
+                        $user = $_SESSION['identifiant'];
                     
                         echo "<div class='avis'>";
                             for ($i = 1; $i <= 5; $i++) {
@@ -87,6 +89,7 @@
                                     echo "Parfait !";
                                     break;
                             }
+                            if($id_user == $user) echo "&emsp;<a href='modif.php'><img title='Modifier l'avis' src='modifier.png' width='15px' ></a>";
                             echo "</strong>
                             <p>$commentaire</p>
                         </div>";
@@ -114,12 +117,11 @@
                                     /*$ch = curl_init();
                                     curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/saveAvis");
                                     curl_setopt($ch, CURLOPT_POST, 1);
-                                    $datas = array("commentaire"=>$commentaire, "note"=>(int)$note, "id_recette"=>$_GET['id'],"id_utilisateur"=>$_SESSION['identifiant']);
+                                    $datas = array("commentaire"=>$commentaire, "note"=>(int)$note, "id_recette"=>$_GET['id'],"id_utilisateur"=>$user);
                                     curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
                                     $result = curl_exec($ch);
                                     print_r($result);
                                     curl_close($ch);*/
-                                    //header("Location: voirrecette.php?id=".$_GET['id']);
                                 }
                             }
 		                echo "</form>";
