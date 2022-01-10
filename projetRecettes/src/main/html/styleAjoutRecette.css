@@ -2,6 +2,8 @@ body{
     margin:0;
     padding:0;
     font-family: Verdana, sans-serif;
+    background-image: url("fondRecette.png");
+    background-size:cover;
 }
 
 h2{ 
@@ -16,17 +18,24 @@ label{
 	display: block;
 	width: 150px;
     float: left;
-    color: gold;
-}
-
-form{
-    margin-left: 400px;
-    margin-top: 100px;
+    color: black;
+    margin-left: 13%;
+    margin-right: 13%;
 }
 
 form input, textarea{
-    border:medium solid gold;
+    border:medium solid gray;
     background-color:white;
+    width: 33%;
+}
+
+#typeSelect{
+    border:medium solid gray;
+    background-color:white;
+    width: 33%;
+}
+#qI, #nI{
+    width: 16%;
 }
 
 .boutons{
@@ -35,5 +44,14 @@ form input, textarea{
 }
 
 input[type='button']:hover, input[type='submit']:hover {
-    background-color:gold;
+    background-color:lightgrey;
+}
+
+#baniere{
+    width:50%;
+    margin-top: 80px;
+    margin-left: 25%;
+    background-color: rgba(255,255,255, 0.8);
+    border:0.3em solid gray;
+    text-align: center;
 }

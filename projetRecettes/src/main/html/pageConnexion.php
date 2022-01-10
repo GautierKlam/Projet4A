@@ -1,5 +1,5 @@
-<?php 
-    session_start(); 
+<?php
+    session_start();
     if(isset($_SESSION['pseudo'])){
         header('Location: accueil.php');
         exit;
@@ -38,9 +38,11 @@
                 {
                     $pseudo = $v['pseudo'];
                     $mdp = $v['mdp'];
+                    $id = substr($v['_links']['self']['href'], -1);
                     if ($_POST['pseudo']==$pseudo AND $_POST['mdp']==$mdp)
                     {
                         $_SESSION['pseudo'] = $pseudo;
+                        $_SESSION['identifiant'] = $id;
                         header("Location: accueil.php");
                     }
                 }

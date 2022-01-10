@@ -50,8 +50,8 @@ public class RecetteControlleur {
     }
 
     //ajouter un ingrédient à une recette
-    @PostMapping(path = "/{recette}/ingredients")
-    public Recette save(@PathVariable Recette recette, Ingredient ingredient){
+    @PostMapping("/saveIngredient")
+    public Recette saveIngredient(@PathVariable Recette recette, Ingredient ingredient){
         recette.getIngredients().add(ingredient);
         return recetteInterface.save(recette);
     }
