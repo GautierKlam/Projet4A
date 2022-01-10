@@ -25,15 +25,4 @@ public class Recette {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_utilisateur")
     private Utilisateur utilisateur;
-
-    public Recette(String nom, int nb_personnes, String introduction, String description, List<Ingredient> ingredients, RecetteType recetteType, List<Avis> avis, Utilisateur utilisateur) {
-        this.nom = nom;
-        this.nb_personnes = nb_personnes;
-        this.introduction = introduction;
-        this.description = description;
-        this.recetteType = recetteType;
-        this.avis = avis;
-        this.ingredients = ingredients;
-        this.utilisateur = utilisateur;
-    }
 }

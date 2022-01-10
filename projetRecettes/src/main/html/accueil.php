@@ -56,7 +56,9 @@
                 $test = $obj['_embedded']['recettes'];
             }
 
-            if(count($test)==0) echo "<h4 class='centre'>Aucun résultat pour la recherche : \"$recherche\"</h4>";
+            if(count($test)==0 && isset($_GET['recherche'])) echo "<h4 class='centre'>Aucun résultat pour la recherche : \"$recherche\"</h4>";
+
+            else if(count($test)==0) echo "<h4 class='centre'>Il n'y a pas encore de recettes publiées sur le site</h4>";
 
             else{
                 echo"<table>
@@ -67,7 +69,7 @@
                     $nom = $v['nom'];
                     $intr = $v['introduction'];
                     $typerecette = $v['recetteType'];
-                    if ($admin==true) $phrase="<td><a href='modif.php'><img title='Modifier la recette' src='modifier.png' width='20px' ></a></td><td><a href='supprimer.php'><img title='Supprimer la recette' src='delete.png' width='20px' ></a></td>";
+                    if ($admin==true) $phrase="<td><a href='modif.php'><img title='Modifier la recette' src='modifier.png' width='20px' ></a></td><td><a href='deleteRecette.php?id=$id&loc=accueil'><img title='Supprimer la recette' src='delete.png' width='20px' ></a></td>";
                     else $phrase="";
                     echo"<tr><td><a href='voirrecette.php?id=$id'>$nom</td><td>$intr</td><td>$typerecette</td>$phrase</tr>";
                 }

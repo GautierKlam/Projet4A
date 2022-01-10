@@ -171,8 +171,8 @@ public class RecetteControlleur {
     }
 
     //suppression d'une recette
-    @DeleteMapping("/recettes/{identifiant}")
-    public void delete(@PathVariable("identifiant")int id){
+    @PostMapping("/deleteRecette")
+    public void delete(int id){
         recetteInterface.deleteById(id);
     }
 }

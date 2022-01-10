@@ -69,11 +69,14 @@
                         
                     
                         echo "<div class='avis'>";
+
                             for ($i = 1; $i <= 5; $i++) {
                                 if($i<=$note) echo "<img src='etoile2.png' class='etoile'/>";
                                 else echo "<img src='etoile.png' class='etoile'/>";
                             }
+
                             echo "<strong>&emsp;";
+
                             switch($note){
                                 case 1 :
                                     echo "Mauvais...";
@@ -91,31 +94,71 @@
                                     echo "Parfait !";
                                     break;
                             }
+
                             if(isset($_SESSION['identifiant']) && $id_user == $user){
                                 $publication = true;
-                                echo "&emsp;<a><img title='Votre avis' src='etoile2.png' width='15px' ></a>";
+                                echo "&emsp;<a href='voirrecette.php?id=$id&modif=1'><img title='Modifier votre avis' src='modifier.png' width='15px'></a>
+                                &emsp;<a href='deleteAvis?id=$id&id_avis='><img title='Supprimer votre avis' src='delete.png' width='15px'></a>";
+                                $user_comm = $commentaire;
+                                $user_note = $note;
                             } 
+
                             echo "</strong>
                             <p>$commentaire</p>
                         </div>";
                     }
 
                     if(!isset($_SESSION['pseudo'])) echo "<br><h4>Veuillez vous connecter pour poster un avis</h4>";
+
                     else if(!$publication){
                         echo "<br><h2>Poster un avis<hr class='barre'></h2>
                         <form method='post' action='voirrecette.php?id=$id'>";?>
                             <div>
                                 <div class='total'>
                                     <p class='centre'><input type="number", min='1', max='5', name="note", placeholder="Note (Entre 1 et 5)", value="<?php if (isset($_POST['note'])){echo $_POST['note'];} ?>"></p>
-                                    <p><textarea class='total' rows="5", maxlength="250", placeholder="Rédigez votre commentaire...", name="commentaire", value="<?php if (isset($_POST['commentaire'])){echo $_POST['commentaire'];} ?>"></textarea></p>
+                                    <p><textarea class='total' rows="5", maxlength="250", placeholder="Rédigez votre commentaire...", name="commentaire"><?php if (isset($_POST['commentaire'])){echo $_POST['commentaire'];} ?></textarea></p>
                                 </div>
                                 <input type="submit" value="Poster l'avis" name="creationavis">
                             </div>
+
                             <?php
                             if(isset($_POST['creationavis'])){     
                                 $note = $_POST['note'];
                                 $commentaire = $_POST['commentaire'];               
-                                if(empty($note) || empty($commentaire))echo '<br>Veuillez remplir tout les champs !';
+
+                                if(empty($note) || empty($commentaire))echo '<br>Veuillez remplir tous les champs !';
+
+                                else{
+                                    /*$ch = curl_init();
+                                    curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/saveAvis");
+                                    curl_setopt($ch, CURLOPT_POST, 1);
+                                    $datas = array("commentaire"=>$commentaire, "note"=>(int)$note, "id_recette"=>$_GET['id'],"id_utilisateur"=>$user);
+                                    curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
+                                    $result = curl_exec($ch);
+                                    print_r($result);
+                                    curl_close($ch);*/
+                                }
+                            }
+		                echo "</form>";
+                    }
+
+                    else if(isset($_GET['modif'])){
+                        echo "<br><h2>Poster un avis<hr class='barre'></h2>
+                        <form method='post' action='voirrecette.php?id=$id'>
+                            <div>
+                                <div class='total'>
+                                    <p class='centre'><input type='number', min='1', max='5', name='note', placeholder='Note (Entre 1 et 5)'', value=$user_note></p>
+                                    <p><textarea class='total' rows='5', maxlength='250', placeholder='Rédigez votre commentaire...', name='commentaire'>$user_comm</textarea></p>
+                                </div>
+                                <input type='submit' value='Publier' name='creationavis'>
+                            </div>";
+
+                            if(isset($_POST['creationavis'])){     
+                                $note = $_POST['note'];
+                                $commentaire = $_POST['commentaire'];             
+
+                                if(empty($note) || empty($commentaire))echo '<br>Veuillez remplir tous les champs !';
+                                
                                 else{
                                     /*$ch = curl_init();
                                     curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/saveAvis");
