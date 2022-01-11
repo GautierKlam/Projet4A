@@ -40,7 +40,7 @@
                     $intr=$v['introduction'];
                     $nom=$v['nom'];
                     $typerecette=$v['recetteType'];
-                    echo "<td><a href='voirrecette.php?id=$id'>$nom</a></td><td>$intr</td><td>$typerecette</td><td><a href='ajoutRecette.php?modif=$id'><img title='Modifier la recette' src='modifier.png' width='20px' ></a></td><td><a href='deleteRecette.php?id=$id&loc=perso'><img title='Supprimer la recette' src='delete.png' width='20px'></a></td></tr>";
+                    echo "<td><a href='voirrecette.php?id=$id'>$nom</a></td><td>$intr</td><td>$typerecette</td><td><a href='ajoutRecette.php?modif=$id&loc=perso'><img title='Modifier la recette' src='modifier.png' width='20px' ></a></td><td><a href='deleteRecette.php?id=$id&loc=perso'><img title='Supprimer la recette' src='delete.png' width='20px'></a></td></tr>";
                 }
             }
             echo "</table></br>";

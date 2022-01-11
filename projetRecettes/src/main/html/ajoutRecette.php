@@ -97,11 +97,22 @@
                         curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
                         $result = curl_exec($ch);
                         curl_close($ch);
-                        echo '<script language="Javascript">
+                        if(isset($_GET['modif'])){
+                            $id=$_GET['modif'];
+                            $loc=$_GET['loc'];
+                            echo "<script language='Javascript'>
 
-                        document.location.replace("accueil.php");
+                            document.location.replace('deleteRecette.php?id=$id&loc=$loc');
 
-                        </script>';
+                            </script>";
+                        }
+                        else{
+                            echo '<script language="Javascript">
+
+                            document.location.replace("accueil.php");
+    
+                            </script>';
+                        } 
                     }
                     else echo $message;
                 }
