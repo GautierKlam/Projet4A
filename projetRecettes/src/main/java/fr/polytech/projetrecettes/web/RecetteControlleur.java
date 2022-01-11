@@ -64,9 +64,10 @@ public class RecetteControlleur {
 
     //suppression d'un avis
     @PostMapping("/deleteAvis")
-    public void deleteAvis(int id_recette, int id_avis){
+    public Recette deleteAvis(int id_recette, int id_avis){
         Recette recette = recetteInterface.getById(id_recette);
         recette.getAvis().remove(id_avis);
+        return recetteInterface.save(recette);
     }
 
     //suppression d'une recette
