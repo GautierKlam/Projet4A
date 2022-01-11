@@ -139,6 +139,11 @@
                                 curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
                                 $result = curl_exec($ch);
                                 curl_close($ch);
+                                echo "<script language='Javascript'>
+
+                                document.location.replace('voirrecette.php?id=$id');
+
+                                </script>";
                             }
                         }
                     }
@@ -154,7 +159,7 @@
                                 <input href='voirrecette.php?id=$id' type='submit' value='Annuler' name='annuler'> <input type='submit' value='Publier' name='modifavis'>
                             </div>";
 
-                            if(isset($_POST['modifavis'])){     
+                            if(isset($_POST['modifavis'])){
                                 $note = $_POST['note'];
                                 $commentaire = $_POST['commentaire'];             
 
@@ -169,6 +174,11 @@
                                     $result = curl_exec($ch);
                                     print_r($result);
                                     curl_close($ch);
+                                    echo "<script language='Javascript'>
+
+                                    document.location.replace('voirrecette.php?id=$id');
+
+                                    </script>";
                                 }
                             }
 		                echo "</form>";

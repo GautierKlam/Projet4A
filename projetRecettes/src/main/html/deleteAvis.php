@@ -27,5 +27,9 @@
     $result = curl_exec($ch);
     print_r($result);
     curl_close($ch);
-    //header("Location: voirrecette.php?id=$id");
+    echo "<script language='Javascript'>
+
+    document.location.replace('voirrecette.php?id=$id');
+
+    </script>";
 ?>

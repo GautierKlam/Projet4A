@@ -97,6 +97,11 @@
                         curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
                         $result = curl_exec($ch);
                         curl_close($ch);
+                        echo '<script language="Javascript">
+
+                        document.location.replace("accueil.php");
+
+                        </script>';
                     }
                     else echo $message;
                 }
