@@ -27,7 +27,7 @@
         }
     ?>
 	<body>
-		<form method="post" action="accueil.php">
+		<form method="post">
             <div id=baniere><br>
                 <p>
                     <label>Nom :</label>

@@ -6,7 +6,6 @@ import fr.polytech.projetrecettes.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class RecetteControlleur {
@@ -55,8 +54,11 @@ public class RecetteControlleur {
     public Recette modifAvis(int id_recette, String commentaire, int note, int id_avis){
         Recette recette = recetteInterface.getById(id_recette);
         Avis avis = recette.getAvis().get(id_avis);
-        avis.setCommentaire(commentaire);
-        avis.setNote(note);
+        Avis avis2 = avis;
+        recette.getAvis().remove(id_avis);
+        avis2.setCommentaire(commentaire);
+        avis2.setNote(note);
+        recette.getAvis().add(avis);
         return recetteInterface.save(recette);
     }
 

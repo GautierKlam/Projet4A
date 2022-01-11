@@ -27,5 +27,5 @@
     $result = curl_exec($ch);
     print_r($result);
     curl_close($ch);
-    header("Location: voirrecette.php?id=$id");
+    //header("Location: voirrecette.php?id=$id");
 ?>
