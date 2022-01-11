@@ -2,7 +2,20 @@
 
 <html>
     <head>
-        <?php include("connexion.php");?>
+        <?php include("connexion.php");
+        $admin=false;
+        if(isset($_SESSION['pseudo'])){
+            $pseudo=$_SESSION['pseudo'];
+            $page1 = file_get_contents('http://localhost:8888/projetrecettes/utilisateurs');
+            $obj1 = json_decode($page1,true);
+            $test1 = $obj1['_embedded'];
+            foreach ($test1['utilisateurs'] as $m) {
+                if ($pseudo==$m['pseudo']){
+                    if ($m['admin']==true) $admin=true;
+                    else $admin=false;
+                }
+            }
+        }?>
         <title>Recette</title>
         <link rel="stylesheet" href="styleVoirRecette.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -66,8 +79,8 @@
                     foreach($avis as $v){
                         $note = $v['note'];
                         $commentaire = $v['commentaire'];
-                        $id_user = substr($v['_links']['utilisateur']['href'], -1);                        
-                    
+                        $id_user = substr($v['_links']['utilisateur']['href'], -1);
+
                         echo "<div class='avis'>";
 
                             for ($i = 1; $i <= 5; $i++) {
@@ -95,13 +108,13 @@
                                     break;
                             }
 
-                            if(isset($_SESSION['identifiant']) && $id_user == $user){
+                            if((isset($_SESSION['identifiant']) && $id_user == $user)||($admin==true)){
                                 $publication = true;
                                 echo "&emsp;<a href='voirrecette.php?id=$id&modif=1&avis=$index'><img title='Modifier votre avis' src='modifier.png' width='15px'></a>
                                 &emsp;<a href='deleteAvis?id=$id&id_avis=$index'><img title='Supprimer votre avis' src='delete.png' width='15px'></a>";
                                 $user_comm = $commentaire;
                                 $user_note = $note;
-                            } 
+                            }
 
                             echo "</strong>
                             <p>$commentaire</p>
@@ -124,9 +137,9 @@
                         </form>
 
                         <?php
-                        if(isset($_POST['creationavis'])){     
+                        if(isset($_POST['creationavis'])){
                             $note = $_POST['note'];
-                            $commentaire = $_POST['commentaire'];               
+                            $commentaire = $_POST['commentaire'];
 
                             if(empty($note) || empty($commentaire))echo "<div class='centre'><br>Veuillez remplir tous les champs !</div>";
 
@@ -160,10 +173,10 @@
 
                             if(isset($_POST['modifavis'])){
                                 $note = $_POST['note'];
-                                $commentaire = $_POST['commentaire'];             
+                                $commentaire = $_POST['commentaire'];
 
                                 if(empty($note) || empty($commentaire))echo '<br>Veuillez remplir tous les champs !';
-                                
+
                                 else{
                                     $ch = curl_init();
                                     curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/modifAvis");

@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <?php include("connexion.php");?>
         <title>Création de compte</title>
         <link rel="stylesheet" href="styleConnexion.css" type="text/css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script>
+          function creationok(){
+            alert('Votre compte a été créé, vous pouvez désormais vous connecter avec vos identifiants');
+          }
+        </script>
     </head>
     <?php include("entete.php");?>
 	<body>
@@ -84,7 +90,7 @@
 
                     if(empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['pseudo']) || empty($_POST['mdp']) || empty($_POST['mdp2']) || empty($_POST['mail']) ){
                         $validation = false;
-                        $message = 'Veuillez remplir tout les champs !';
+                        $message = 'Veuillez remplir tous les champs !';
                     }
 
                     if($validation){
@@ -98,6 +104,7 @@
                         print_r($result);
                         curl_close($ch);
                         header("Location: pageConnexion.php");
+
                     }
                     else echo $message;
                 }
