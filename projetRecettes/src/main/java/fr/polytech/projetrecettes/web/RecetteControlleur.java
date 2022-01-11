@@ -157,9 +157,12 @@ public class RecetteControlleur {
     }
 
     //Modifier le commentaire d'un avis
-    @PutMapping("/{recette}/{avis}/commentaire")
-    public Recette saveCommentaire(@PathVariable Recette recette, @PathVariable Avis avis, String commentaire){
-        recette.getAvis().get(avis.getId_avis()-1).setCommentaire(commentaire);
+    @PostMapping("/modifAvis")
+    public Recette modifAvis(int id_recette, String commentaire, int note, int id_avis){
+        Recette recette = recetteInterface.getById(id_recette);
+        Avis avis = recette.getAvis().get(id_avis);
+        avis.setCommentaire(commentaire);
+        avis.setNote(note);
         return recetteInterface.save(recette);
     }
 

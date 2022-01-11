@@ -63,7 +63,6 @@
                     <br><h2>Avis<hr class='barre'></h2>";
                     $index=0;
                     foreach($avis as $v){
-                        $index++;
                         $note = $v['note'];
                         $commentaire = $v['commentaire'];
                         $id_user = substr($v['_links']['utilisateur']['href'], -1);
@@ -99,7 +98,7 @@
 
                             if(isset($_SESSION['identifiant']) && $id_user == $user){
                                 $publication = true;
-                                echo "&emsp;<a href='voirrecette.php?id=$id&modif=1'><img title='Modifier votre avis' src='modifier.png' width='15px'></a>
+                                echo "&emsp;<a href='voirrecette.php?id=$id&modif=1&avis=$index'><img title='Modifier votre avis' src='modifier.png' width='15px'></a>
                                 &emsp;<a href='deleteAvis?id=$id&id_avis=$index'><img title='Supprimer votre avis' src='delete.png' width='15px'></a>";
                                 $user_comm = $commentaire;
                                 $user_note = $note;
@@ -108,13 +107,14 @@
                             echo "</strong>
                             <p>$commentaire</p>
                         </div>";
+                        $index++;
                     }
 
                     if(!isset($_SESSION['pseudo'])) echo "<br><h4>Veuillez vous connecter pour poster un avis</h4>";
 
                     else if(!$publication){
                         echo "<br><h2>Poster un avis<hr class='barre'></h2>
-                        <form method='post' action='voirrecette.php?id=$id'>";?>
+                        <form method='post'";?>
                             <div>
                                 <div class='total'>
                                     <p class='centre'><input type="number", min='1', max='5', name="note", placeholder="Note (Entre 1 et 5)", value="<?php if (isset($_POST['note'])){echo $_POST['note'];} ?>"></p>
@@ -122,54 +122,53 @@
                                 </div>
                                 <input type="submit" value="Poster l'avis" name="creationavis">
                             </div>
+                        </form>
 
-                            <?php
-                            if(isset($_POST['creationavis'])){     
-                                $note = $_POST['note'];
-                                $commentaire = $_POST['commentaire'];               
+                        <?php
+                        if(isset($_POST['creationavis'])){     
+                            $note = $_POST['note'];
+                            $commentaire = $_POST['commentaire'];               
 
-                                if(empty($note) || empty($commentaire))echo '<br>Veuillez remplir tous les champs !';
+                            if(empty($note) || empty($commentaire))echo "<div class='centre'><br>Veuillez remplir tous les champs !</div>";
 
-                                else{
-                                    $ch = curl_init();
-                                    curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/saveAvis");
-                                    curl_setopt($ch, CURLOPT_POST, 1);
-                                    $datas = array("id_recette"=>$_GET['id'],"commentaire"=>$commentaire, "note"=>(int)$note,"id_utilisateur"=>$user);
-                                    curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
-                                    $result = curl_exec($ch);
-                                    print_r($result);
-                                    curl_close($ch);
-                                }
+                            else{
+                                $ch = curl_init();
+                                curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/saveAvis");
+                                curl_setopt($ch, CURLOPT_POST, 1);
+                                $datas = array("id_recette"=>$id,"commentaire"=>$commentaire, "note"=>(int)$note,"id_utilisateur"=>$user);
+                                curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
+                                $result = curl_exec($ch);
+                                curl_close($ch);
                             }
-		                echo "</form>";
+                        }
                     }
 
                     else if(isset($_GET['modif'])){
                         echo "<br><h2>Modifier votre avis<hr class='barre'></h2>
-                        <form method='post' action='voirrecette.php?id=$id'>
+                        <form method='post'>
                             <div>
                                 <div class='total'>
                                     <p class='centre'><input type='number', min='1', max='5', name='note', placeholder='Note (Entre 1 et 5)'', value=$user_note></p>
                                     <p><textarea class='total' rows='5', maxlength='250', placeholder='Rédigez votre commentaire...', name='commentaire'>$user_comm</textarea></p>
                                 </div>
-                                <input href='voirrecette.php?id=$id' type='submit' value='Annuler' name='annuler'> <input type='submit' value='Publier' name='creationavis'>
+                                <input href='voirrecette.php?id=$id' type='submit' value='Annuler' name='annuler'> <input type='submit' value='Publier' name='modifavis'>
                             </div>";
 
-                            if(isset($_POST['creationavis'])){     
+                            if(isset($_POST['modifavis'])){     
                                 $note = $_POST['note'];
                                 $commentaire = $_POST['commentaire'];             
 
                                 if(empty($note) || empty($commentaire))echo '<br>Veuillez remplir tous les champs !';
                                 
                                 else{
-                                    /*$ch = curl_init();
-                                    curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/saveAvis");
+                                    $ch = curl_init();
+                                    curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/modifAvis");
                                     curl_setopt($ch, CURLOPT_POST, 1);
-                                    $datas = array("commentaire"=>$commentaire, "note"=>(int)$note, "id_recette"=>$_GET['id'],"id_utilisateur"=>$user);
+                                    $datas = array("id_recette"=>$id,"commentaire"=>$commentaire, "note"=>(int)$note,"id_avis"=>$_GET['avis']);
                                     curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
                                     $result = curl_exec($ch);
                                     print_r($result);
-                                    curl_close($ch);*/
+                                    curl_close($ch);
                                 }
                             }
 		                echo "</form>";

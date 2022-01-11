@@ -27,7 +27,7 @@
         }
     ?>
 	<body>
-		<form method="post">
+		<form method="post" action="accueil.php">
             <div id=baniere><br>
                 <p>
                     <label>Nom :</label>
@@ -97,8 +97,6 @@
                         curl_setopt($ch, CURLOPT_POSTFIELDS,$datas);
                         $result = curl_exec($ch);
                         curl_close($ch);
-
-                        header("Location: pageConnexion.php");
                     }
                     else echo $message;
                 }
