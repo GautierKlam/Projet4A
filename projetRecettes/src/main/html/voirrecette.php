@@ -23,6 +23,7 @@
         $ingredients = $obj['ingredients'];
         $avis = $obj['avis'];
         $publication = false;
+        if(isset($_SESSION['identifiant']))$user = $_SESSION['identifiant'];
 
         if($nb_personnes == 1) echo "<h1>$nom ($nb_personnes personne)</h1>";
 
@@ -65,9 +66,7 @@
                     foreach($avis as $v){
                         $note = $v['note'];
                         $commentaire = $v['commentaire'];
-                        $id_user = substr($v['_links']['utilisateur']['href'], -1);
-                        if(isset($_SESSION['identifiant']))$user = $_SESSION['identifiant'];
-                        
+                        $id_user = substr($v['_links']['utilisateur']['href'], -1);                        
                     
                         echo "<div class='avis'>";
 
